@@ -8,7 +8,7 @@
 
 import Foundation
 
-public final class LazyVector<T> : SequenceType {
+public final class LazyVector<T> : Sequence {
     
     private let _generator : (Int)->T?
     private let _replacer : ((Int, T)->())?
@@ -46,13 +46,13 @@ public final class LazyVector<T> : SequenceType {
     
     public var count : Int {return _count}
     
-    public func generate() -> AnyGenerator<T> {
+    public func makeIterator() -> AnyIterator<T> {
         var index = 0
         
-        return AnyGenerator(body: { [self]
+        return AnyIterator {
             let value = self[index]
             index += 1
             return value
-        })
+        }
     }
 }

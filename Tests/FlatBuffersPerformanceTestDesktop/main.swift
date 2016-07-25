@@ -36,7 +36,7 @@ func testRandomContactListToByteArrayAndBackAgain(){
     let after5 = CFAbsoluteTimeGetCurrent()
     print("\((after5 - time5) * 1000.0) ms encode to JSON \(jsonString.utf8.count)")
     
-    let json = try!NSJSONSerialization.JSONObjectWithData(jsonString.dataUsingEncoding(NSUTF8StringEncoding)!, options: []) as! NSDictionary
+    let json = try!JSONSerialization.JSONObjectWithData(jsonString.dataUsingEncoding(String.Encoding.utf8)!, options: []) as! NSDictionary
     
     let time6 = CFAbsoluteTimeGetCurrent()
     let jsonBasedList = ContactList.fromJSON(json)
@@ -48,17 +48,17 @@ func testRandomContactListToByteArrayAndBackAgain(){
 }
 
 func testReadingJSON(){
-    let jsonData = NSData(contentsOfFile: "/Users/mzaks/dev/FlatBuffersSwift/Example/contactList_.json")!
+    let jsonData = try! Data(contentsOf: URL(fileURLWithPath: "/Users/mzaks/dev/FlatBuffersSwift/Example/contactList_.json"))
     let time1 = CFAbsoluteTimeGetCurrent()
-    let o = try! NSJSONSerialization.JSONObjectWithData(jsonData, options: NSJSONReadingOptions.MutableContainers)
+    let o = try! JSONSerialization.jsonObject(with: jsonData, options: JSONSerialization.ReadingOptions.mutableContainers)
     let after1 = CFAbsoluteTimeGetCurrent()
     print("\((after1 - time1) * 1000.0) ms for parsing JSON")
 
     let time2 = CFAbsoluteTimeGetCurrent()
-    let newData2 : NSData = try!NSJSONSerialization.dataWithJSONObject(o, options: NSJSONWritingOptions(rawValue: 0))
+    let newData2 : Data = try!JSONSerialization.data(withJSONObject: o, options: JSONSerialization.WritingOptions(rawValue: 0))
     let after2 = CFAbsoluteTimeGetCurrent()
-    print("\((after2 - time2) * 1000.0) ms for creating JSON, size \(newData2.length)")
-    newData2.writeToFile("/Users/mzaks/dev/FlatBuffersSwift/Example/contactList_.json", atomically: true)
+    print("\((after2 - time2) * 1000.0) ms for creating JSON, size \(newData2.count)")
+    try? newData2.write(to: URL(fileURLWithPath: "/Users/mzaks/dev/FlatBuffersSwift/Example/contactList_.json"), options: [.dataWritingAtomic])
     
 }
 

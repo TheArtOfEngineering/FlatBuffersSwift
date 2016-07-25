@@ -4,28 +4,28 @@
 import Foundation
 
 		public enum Enum : Int16 {
-			case Apples, Pears, Bananas
+			case apples, pears, bananas
 		}
 		
 		extension Enum {
 			func toJSON() -> String {
 				switch self {
-				case Apples:
+				case apples:
 					return "\"Apples\""
-				case Pears:
+				case pears:
 					return "\"Pears\""
-				case Bananas:
+				case bananas:
 					return "\"Bananas\""
 				}
 			}
-			static func fromJSON(value : String) -> Enum? {
+			static func fromJSON(_ value : String) -> Enum? {
 			switch value {
 			case "Apples":
-				return Apples
+				return apples
 			case "Pears":
-				return Pears
+				return pears
 			case "Bananas":
-				return Bananas
+				return bananas
 			default:
 				return nil
 			}
@@ -51,12 +51,12 @@ extension Foo {
 		return "{\(idProperty),\(countProperty),\(prefixProperty),\(lengthProperty)}"
 	}
 	
-	public static func fromJSON(dict : NSDictionary) -> Foo {
+	public static func fromJSON(_ dict : NSDictionary) -> Foo {
 		return Foo(
-		id: (dict["id"] as! NSNumber).unsignedLongLongValue,
-		count: (dict["count"] as! NSNumber).shortValue,
-		prefix: (dict["prefix"] as! NSNumber).charValue,
-		length: (dict["length"] as! NSNumber).unsignedIntValue
+		id: (dict["id"] as! NSNumber).uint64Value,
+		count: (dict["count"] as! NSNumber).int16Value,
+		prefix: (dict["prefix"] as! NSNumber).int8Value,
+		length: (dict["length"] as! NSNumber).uint32Value
 		)
 	}
 }
@@ -79,12 +79,12 @@ extension Bar {
 		return "{\(parentProperty),\(timeProperty),\(ratioProperty),\(sizeProperty)}"
 	}
 	
-	public static func fromJSON(dict : NSDictionary) -> Bar {
+	public static func fromJSON(_ dict : NSDictionary) -> Bar {
 		return Bar(
 		parent: Foo.fromJSON(dict["parent"] as! NSDictionary),
-		time: (dict["time"] as! NSNumber).intValue,
+		time: (dict["time"] as! NSNumber).int32Value,
 		ratio: (dict["ratio"] as! NSNumber).floatValue,
-		size: (dict["size"] as! NSNumber).unsignedShortValue
+		size: (dict["size"] as! NSNumber).uint16Value
 		)
 	}
 }
@@ -99,10 +99,10 @@ public final class FooBar {
 				return s
 			}
 			if let s = name_ss {
-				name_s = s.stringValue
+				name_s = String(s)
 			}
 			if let s = name_b {
-				name_s = String.init(bytesNoCopy: UnsafeMutablePointer<UInt8>(s.baseAddress), length: s.count, encoding: NSUTF8StringEncoding, freeWhenDone: false)
+				name_s = String.init(bytesNoCopy: UnsafeMutablePointer<UInt8>(s.baseAddress!), length: s.count, encoding: String.Encoding.utf8, freeWhenDone: false)
 			}
 			return name_s
 		}
@@ -112,7 +112,7 @@ public final class FooBar {
 			name_b = nil
 		}
 	}
-	public func nameStaticString(newValue : StaticString) {
+	public func nameStaticString(_ newValue : StaticString) {
 		name_ss = newValue
 		name_s = nil
 		name_b = nil
@@ -148,7 +148,7 @@ extension FooBar : PoolableInstances {
 	}
 }
 public extension FooBar {
-	private static func create(reader : FlatBufferReader, objectOffset : Offset?) -> FooBar? {
+	private static func create(_ reader : FlatBufferReader, objectOffset : Offset?) -> FooBar? {
 		guard let objectOffset = objectOffset else {
 			return nil
 		}
@@ -212,7 +212,7 @@ public func ==(t1 : FooBar.LazyAccess, t2 : FooBar.LazyAccess) -> Bool {
 
 extension FooBar {
 public struct Fast : Hashable {
-	private var buffer : UnsafePointer<UInt8> = nil
+	private var buffer : UnsafePointer<UInt8>? = nil
 	private var myOffset : Offset = 0
 	public init(buffer: UnsafePointer<UInt8>, myOffset: Offset){
 		self.buffer = buffer
@@ -242,7 +242,7 @@ public func ==(t1 : FooBar.Fast, t2 : FooBar.Fast) -> Bool {
 	return t1.buffer == t2.buffer && t1.myOffset == t2.myOffset
 }
 public extension FooBar {
-	private func addToByteArray(builder : FlatBufferBuilder) -> Offset {
+	private func addToByteArray(_ builder : FlatBufferBuilder) -> Offset {
 		if builder.config.uniqueTables {
 			if let myOffset = builder.cache[ObjectIdentifier(self)] {
 				return myOffset
@@ -284,10 +284,10 @@ extension FooBar {
 		properties.append("\"rating\":\(rating)")
 		properties.append("\"postfix\":\(postfix)")
 		
-		return "{\(properties.joinWithSeparator(","))}"
+		return "{\(properties.joined(separator: ","))}"
 	}
 
-	public static func fromJSON(dict : NSDictionary) -> FooBar {
+	public static func fromJSON(_ dict : NSDictionary) -> FooBar {
 		let result = FooBar()
 		if let sibling = dict["sibling"] as? NSDictionary {
 			result.sibling = Bar.fromJSON(sibling)
@@ -299,7 +299,7 @@ extension FooBar {
 			result.rating = rating.doubleValue
 		}
 		if let postfix = dict["postfix"] as? NSNumber {
-			result.postfix = postfix.unsignedCharValue
+			result.postfix = postfix.uint8Value
 		}
 		return result
 	}
@@ -314,17 +314,17 @@ public final class FooBarContainer {
 	public static var instancePool : ContiguousArray<FooBarContainer> = []
 	public var list : ContiguousArray<FooBar?> = []
 	public var initialized : Bool = false
-	public var fruit : Enum? = Enum.Apples
+	public var fruit : Enum? = Enum.apples
 	public var location : String? {
 		get {
 			if let s = location_s {
 				return s
 			}
 			if let s = location_ss {
-				location_s = s.stringValue
+				location_s = String(s)
 			}
 			if let s = location_b {
-				location_s = String.init(bytesNoCopy: UnsafeMutablePointer<UInt8>(s.baseAddress), length: s.count, encoding: NSUTF8StringEncoding, freeWhenDone: false)
+				location_s = String.init(bytesNoCopy: UnsafeMutablePointer<UInt8>(s.baseAddress!), length: s.count, encoding: String.Encoding.utf8, freeWhenDone: false)
 			}
 			return location_s
 		}
@@ -334,7 +334,7 @@ public final class FooBarContainer {
 			location_b = nil
 		}
 	}
-	public func locationStaticString(newValue : StaticString) {
+	public func locationStaticString(_ newValue : StaticString) {
 		location_ss = newValue
 		location_s = nil
 		location_b = nil
@@ -366,12 +366,12 @@ extension FooBarContainer : PoolableInstances {
 			FooBar.reuseInstance(&x)
 		}
 		initialized = false
-		fruit = Enum.Apples
+		fruit = Enum.apples
 		location = nil
 	}
 }
 public extension FooBarContainer {
-	private static func create(reader : FlatBufferReader, objectOffset : Offset?) -> FooBarContainer? {
+	private static func create(_ reader : FlatBufferReader, objectOffset : Offset?) -> FooBarContainer? {
 		guard let objectOffset = objectOffset else {
 			return nil
 		}
@@ -401,26 +401,26 @@ public extension FooBarContainer {
 	}
 }
 public extension FooBarContainer {
-	public static func fromByteArray(data : UnsafeBufferPointer<UInt8>, config : BinaryReadConfig = BinaryReadConfig()) -> FooBarContainer {
+	public static func fromByteArray(_ data : UnsafeBufferPointer<UInt8>, config : BinaryReadConfig = BinaryReadConfig()) -> FooBarContainer {
 		let reader = FlatBufferReader.create(data, config: config)
 		let objectOffset = reader.rootObjectOffset
 		let result = create(reader, objectOffset : objectOffset)!
 		FlatBufferReader.reuse(reader)
 		return result
 	}
-	public static func fromRawMemory(data : UnsafeMutablePointer<UInt8>, count : Int, config : BinaryReadConfig = BinaryReadConfig()) -> FooBarContainer {
+	public static func fromRawMemory(_ data : UnsafeMutablePointer<UInt8>, count : Int, config : BinaryReadConfig = BinaryReadConfig()) -> FooBarContainer {
 		let reader = FlatBufferReader.create(data, count: count, config: config)
 		let objectOffset = reader.rootObjectOffset
 		let result = create(reader, objectOffset : objectOffset)!
 		FlatBufferReader.reuse(reader)
 		return result
 	}
-	public static func fromFlatBufferReader(flatBufferReader : FlatBufferReader) -> FooBarContainer {
+	public static func fromFlatBufferReader(_ flatBufferReader : FlatBufferReader) -> FooBarContainer {
 		return create(flatBufferReader, objectOffset : flatBufferReader.rootObjectOffset)!
 	}
 }
 public extension FooBarContainer {
-	public func toByteArray (config : BinaryBuildConfig = BinaryBuildConfig()) -> [UInt8] {
+	public func toByteArray (_ config : BinaryBuildConfig = BinaryBuildConfig()) -> [UInt8] {
 		let builder = FlatBufferBuilder.create(config)
 		let offset = addToByteArray(builder)
 		performLateBindings(builder)
@@ -432,7 +432,7 @@ public extension FooBarContainer {
 }
 
 public extension FooBarContainer {
-	public func toFlatBufferBuilder (builder : FlatBufferBuilder) -> Void {
+	public func toFlatBufferBuilder (_ builder : FlatBufferBuilder) -> Void {
 		let offset = addToByteArray(builder)
 		performLateBindings(builder)
 		try! builder.finish(offset, fileIdentifier: nil)
@@ -497,7 +497,7 @@ public func ==(t1 : FooBarContainer.LazyAccess, t2 : FooBarContainer.LazyAccess)
 
 extension FooBarContainer {
 public struct Fast : Hashable {
-	private var buffer : UnsafePointer<UInt8> = nil
+	private var buffer : UnsafePointer<UInt8>? = nil
 	private var myOffset : Offset = 0
 	public init(buffer: UnsafePointer<UInt8>, myOffset: Offset){
 		self.buffer = buffer
@@ -508,10 +508,10 @@ public struct Fast : Hashable {
 		self.myOffset = UnsafePointer<Offset>(buffer.advancedBy(0)).memory
 	}
 	public func getData() -> UnsafePointer<UInt8> {
-		return buffer
+		return buffer!
 	}
 	public struct ListVector {
-		private var buffer : UnsafePointer<UInt8> = nil
+		private var buffer : UnsafePointer<UInt8>? = nil
 		private var myOffset : Offset = 0
 		private let offsetList : Offset?
 		private init(buffer b: UnsafePointer<UInt8>, myOffset o: Offset ) {
@@ -550,7 +550,7 @@ public func ==(t1 : FooBarContainer.Fast, t2 : FooBarContainer.Fast) -> Bool {
 	return t1.buffer == t2.buffer && t1.myOffset == t2.myOffset
 }
 public extension FooBarContainer {
-	private func addToByteArray(builder : FlatBufferBuilder) -> Offset {
+	private func addToByteArray(_ builder : FlatBufferBuilder) -> Offset {
 		if builder.config.uniqueTables {
 			if let myOffset = builder.cache[ObjectIdentifier(self)] {
 				return myOffset
@@ -598,7 +598,7 @@ public extension FooBarContainer {
 extension FooBarContainer {
 	public func toJSON() -> String{
 		var properties : [String] = []
-		properties.append("\"list\":[\(list.map({$0 == nil ? "null" : $0!.toJSON()}).joinWithSeparator(","))]")
+		properties.append("\"list\":[\(list.map({$0 == nil ? "null" : $0!.toJSON()}).joined(separator: ","))]")
 		properties.append("\"initialized\":\(initialized)")
 		if let fruit = fruit{
 			properties.append("\"fruit\":\(fruit.toJSON())")
@@ -607,10 +607,10 @@ extension FooBarContainer {
 			properties.append("\"location\":\"\(location)\"")
 		}
 		
-		return "{\(properties.joinWithSeparator(","))}"
+		return "{\(properties.joined(separator: ","))}"
 	}
 
-	public static func fromJSON(dict : NSDictionary) -> FooBarContainer {
+	public static func fromJSON(_ dict : NSDictionary) -> FooBarContainer {
 		let result = FooBarContainer()
 		if let list = dict["list"] as? NSArray {
 			result.list = ContiguousArray(list.map({
@@ -636,7 +636,7 @@ extension FooBarContainer {
 		return "\"FooBarContainer\""
 	}
 }
-private func performLateBindings(builder : FlatBufferBuilder) {
+private func performLateBindings(_ builder : FlatBufferBuilder) {
 	for binding in builder.deferedBindings {
 		switch binding.object {
 		case let object as FooBar: try! builder.replaceOffset(object.addToByteArray(builder), atCursor: binding.cursor)

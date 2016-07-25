@@ -7,251 +7,199 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0B62C1E81C3D8ADF002500FE /* LazyVector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B62C1E71C3D8ADF002500FE /* LazyVector.swift */; };
-		0B62C1EB1C3EA5EA002500FE /* LazyVectorAccessTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B62C1EA1C3EA5EA002500FE /* LazyVectorAccessTests.swift */; };
-		0B62C1F31C43F6A2002500FE /* FlatBufferBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B62C1F01C43F1CD002500FE /* FlatBufferBuilder.swift */; };
-		0B62C2081C49391F002500FE /* contactList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B62C2031C493912002500FE /* contactList.swift */; };
-		0B62C20B1C4958D9002500FE /* contactListGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B62C2091C4958B1002500FE /* contactListGenerator.swift */; };
-		0B62C20C1C4958DA002500FE /* contactListGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B62C2091C4958B1002500FE /* contactListGenerator.swift */; };
-		0B7541041CE123C000F59B24 /* bench_direct_access.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B7541031CE123C000F59B24 /* bench_direct_access.swift */; };
-		0BA0E8491C32B62200B896B7 /* FlatBuffersSwift.h in Headers */ = {isa = PBXBuildFile; fileRef = 0BA0E8481C32B62200B896B7 /* FlatBuffersSwift.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		0BA0E8681C32B6A300B896B7 /* FlatBuffersTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BA0E8671C32B6A300B896B7 /* FlatBuffersTests.swift */; };
-		0BA0E86E1C32B6AD00B896B7 /* FlatBufferReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BA0E86A1C32B6AD00B896B7 /* FlatBufferReader.swift */; };
-		0BA0E8701C32B6AD00B896B7 /* FlatBuffers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BA0E86C1C32B6AD00B896B7 /* FlatBuffers.swift */; };
-		0BA0E87C1C3AC27800B896B7 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BA0E87B1C3AC27800B896B7 /* main.swift */; };
-		0BBDD0A81C4AAB2A00D955F3 /* FlatBuffersGeneratedAPITest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BBDD0A71C4AAB2A00D955F3 /* FlatBuffersGeneratedAPITest.swift */; };
-		0BE327751CD5F1AA0067DAC8 /* Configs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BE327741CD5F1AA0067DAC8 /* Configs.swift */; };
-		0BE327771CD69B3A0067DAC8 /* contactList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BE327761CD69B3A0067DAC8 /* contactList.swift */; };
-		0BE327781CD69BA00067DAC8 /* FlatBuffersSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0BA0E8451C32B62200B896B7 /* FlatBuffersSwift.framework */; };
-		85518AD91CD21D3700EEBCAC /* bench.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85518AD81CD21D3700EEBCAC /* bench.swift */; };
-		85518ADB1CD21D4300EEBCAC /* flatbench.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85518ADA1CD21D4300EEBCAC /* flatbench.swift */; };
-		85EE88711CE486610030231F /* FlatBuffersSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0BA0E8451C32B62200B896B7 /* FlatBuffersSwift.framework */; };
-		85EE887A1CE487890030231F /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85EE88771CE487890030231F /* main.swift */; };
-		85EE887B1CE487890030231F /* monster.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85EE88791CE487890030231F /* monster.swift */; };
+		_LinkFileRef_FlatBuffersSwift_via_FlatBuffersSwiftTestSuite /* FlatBuffersSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "_____Product_FlatBuffersSwift" /* FlatBuffersSwift.framework */; };
+		__src_cc_ref_Sources/Configs.swift /* Configs.swift in Sources */ = {isa = PBXBuildFile; fileRef = __PBXFileRef_Sources/Configs.swift /* Configs.swift */; };
+		__src_cc_ref_Sources/FlatBufferBuilder.swift /* FlatBufferBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = __PBXFileRef_Sources/FlatBufferBuilder.swift /* FlatBufferBuilder.swift */; };
+		__src_cc_ref_Sources/FlatBufferReader.swift /* FlatBufferReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = __PBXFileRef_Sources/FlatBufferReader.swift /* FlatBufferReader.swift */; };
+		__src_cc_ref_Sources/FlatBuffers.swift /* FlatBuffers.swift in Sources */ = {isa = PBXBuildFile; fileRef = __PBXFileRef_Sources/FlatBuffers.swift /* FlatBuffers.swift */; };
+		__src_cc_ref_Sources/LazyVector.swift /* LazyVector.swift in Sources */ = {isa = PBXBuildFile; fileRef = __PBXFileRef_Sources/LazyVector.swift /* LazyVector.swift */; };
+		__src_cc_ref_Tests/FlatBuffersPerformanceTestDesktop/bench.swift /* bench.swift in Sources */ = {isa = PBXBuildFile; fileRef = __PBXFileRef_Tests/FlatBuffersPerformanceTestDesktop/bench.swift /* bench.swift */; };
+		__src_cc_ref_Tests/FlatBuffersPerformanceTestDesktop/bench_direct_access.swift /* bench_direct_access.swift in Sources */ = {isa = PBXBuildFile; fileRef = __PBXFileRef_Tests/FlatBuffersPerformanceTestDesktop/bench_direct_access.swift /* bench_direct_access.swift */; };
+		__src_cc_ref_Tests/FlatBuffersPerformanceTestDesktop/flatbench.swift /* flatbench.swift in Sources */ = {isa = PBXBuildFile; fileRef = __PBXFileRef_Tests/FlatBuffersPerformanceTestDesktop/flatbench.swift /* flatbench.swift */; };
+		__src_cc_ref_Tests/FlatBuffersPerformanceTestDesktop/main.swift /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = __PBXFileRef_Tests/FlatBuffersPerformanceTestDesktop/main.swift /* main.swift */; };
+		__src_cc_ref_Tests/FlatBuffersSwift/FlatBuffersGeneratedAPITest.swift /* FlatBuffersGeneratedAPITest.swift in Sources */ = {isa = PBXBuildFile; fileRef = __PBXFileRef_Tests/FlatBuffersSwift/FlatBuffersGeneratedAPITest.swift /* FlatBuffersGeneratedAPITest.swift */; };
+		__src_cc_ref_Tests/FlatBuffersSwift/FlatBuffersTests.swift /* FlatBuffersTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = __PBXFileRef_Tests/FlatBuffersSwift/FlatBuffersTests.swift /* FlatBuffersTests.swift */; };
+		__src_cc_ref_Tests/FlatBuffersSwift/LazyVectorAccessTests.swift /* LazyVectorAccessTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = __PBXFileRef_Tests/FlatBuffersSwift/LazyVectorAccessTests.swift /* LazyVectorAccessTests.swift */; };
+		__src_cc_ref_Tests/FlatBuffersSwift/contactList.swift /* contactList.swift in Sources */ = {isa = PBXBuildFile; fileRef = __PBXFileRef_Tests/FlatBuffersSwift/contactList.swift /* contactList.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		0B62C2121C4A9342002500FE /* PBXContainerItemProxy */ = {
+		DCDEEDD81D45C25B0094E30C /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 0BA0E83C1C32B62200B896B7 /* Project object */;
+			containerPortal = __RootObject_ /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 0BA0E8441C32B62200B896B7;
-			remoteInfo = FlatBuffersSwift;
-		};
-		0BA0E8511C32B62200B896B7 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 0BA0E83C1C32B62200B896B7 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 0BA0E8441C32B62200B896B7;
+			remoteGlobalIDString = "______Target_FlatBuffersSwift";
 			remoteInfo = FlatBuffersSwift;
 		};
 /* End PBXContainerItemProxy section */
 
-/* Begin PBXCopyFilesBuildPhase section */
-		0BA0E8771C3AC27800B896B7 /* CopyFiles */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = /usr/share/man/man1/;
-			dstSubfolderSpec = 0;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 1;
-		};
-		85EE88661CE484900030231F /* CopyFiles */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = /usr/share/man/man1/;
-			dstSubfolderSpec = 0;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 1;
-		};
-/* End PBXCopyFilesBuildPhase section */
-
 /* Begin PBXFileReference section */
-		0B62C1E71C3D8ADF002500FE /* LazyVector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LazyVector.swift; sourceTree = "<group>"; };
-		0B62C1EA1C3EA5EA002500FE /* LazyVectorAccessTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LazyVectorAccessTests.swift; sourceTree = "<group>"; };
-		0B62C1F01C43F1CD002500FE /* FlatBufferBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FlatBufferBuilder.swift; sourceTree = "<group>"; };
-		0B62C2031C493912002500FE /* contactList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = contactList.swift; sourceTree = "<group>"; };
-		0B62C2041C493912002500FE /* contacts.fbs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = contacts.fbs; sourceTree = "<group>"; };
-		0B62C2091C4958B1002500FE /* contactListGenerator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = contactListGenerator.swift; sourceTree = "<group>"; };
-		0B7541031CE123C000F59B24 /* bench_direct_access.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = bench_direct_access.swift; sourceTree = "<group>"; };
-		0BA0E8451C32B62200B896B7 /* FlatBuffersSwift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = FlatBuffersSwift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		0BA0E8481C32B62200B896B7 /* FlatBuffersSwift.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FlatBuffersSwift.h; sourceTree = "<group>"; };
-		0BA0E84A1C32B62200B896B7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		0BA0E84F1C32B62200B896B7 /* FlatBuffersSwiftTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FlatBuffersSwiftTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		0BA0E8561C32B62200B896B7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		0BA0E8671C32B6A300B896B7 /* FlatBuffersTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FlatBuffersTests.swift; sourceTree = "<group>"; };
-		0BA0E86A1C32B6AD00B896B7 /* FlatBufferReader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FlatBufferReader.swift; sourceTree = "<group>"; };
-		0BA0E86C1C32B6AD00B896B7 /* FlatBuffers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FlatBuffers.swift; sourceTree = "<group>"; };
-		0BA0E8791C3AC27800B896B7 /* FlatBuffersPerformanceTestDesktop */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = FlatBuffersPerformanceTestDesktop; sourceTree = BUILT_PRODUCTS_DIR; };
-		0BA0E87B1C3AC27800B896B7 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
-		0BBDD0A71C4AAB2A00D955F3 /* FlatBuffersGeneratedAPITest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FlatBuffersGeneratedAPITest.swift; sourceTree = "<group>"; };
-		0BE327741CD5F1AA0067DAC8 /* Configs.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Configs.swift; sourceTree = "<group>"; };
-		0BE327761CD69B3A0067DAC8 /* contactList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = contactList.swift; sourceTree = "<group>"; };
-		85518AD71CD21D2B00EEBCAC /* bench.fbs */ = {isa = PBXFileReference; lastKnownFileType = text; path = bench.fbs; sourceTree = "<group>"; };
-		85518AD81CD21D3700EEBCAC /* bench.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = bench.swift; sourceTree = "<group>"; };
-		85518ADA1CD21D4300EEBCAC /* flatbench.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = flatbench.swift; sourceTree = "<group>"; };
-		85EE88611CDE83E00030231F /* generate.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = generate.sh; sourceTree = SOURCE_ROOT; };
-		85EE88621CDE84640030231F /* .travis.yml */ = {isa = PBXFileReference; lastKnownFileType = text; name = .travis.yml; path = ../.travis.yml; sourceTree = "<group>"; };
-		85EE88681CE484900030231F /* sample_binary */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = sample_binary; sourceTree = BUILT_PRODUCTS_DIR; };
-		85EE88771CE487890030231F /* main.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
-		85EE88781CE487890030231F /* monster.fbs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = monster.fbs; sourceTree = "<group>"; };
-		85EE88791CE487890030231F /* monster.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = monster.swift; sourceTree = "<group>"; };
-		85EE887C1CE5128E0030231F /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = SOURCE_ROOT; };
-		85EE887E1CE512980030231F /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = SOURCE_ROOT; };
+		__PBXFileRef_FlatBuffersSwift.xcodeproj/Configs/Project.xcconfig /* Project.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = Project.xcconfig; path = FlatBuffersSwift.xcodeproj/Configs/Project.xcconfig; sourceTree = "<group>"; };
+		__PBXFileRef_FlatBuffersSwiftTestSuite_Info.plist /* FlatBuffersSwiftTestSuite_Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = FlatBuffersSwiftTestSuite_Info.plist; path = FlatBuffersSwift.xcodeproj/FlatBuffersSwiftTestSuite_Info.plist; sourceTree = SOURCE_ROOT; };
+		__PBXFileRef_FlatBuffersSwift_Info.plist /* FlatBuffersSwift_Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = FlatBuffersSwift_Info.plist; path = FlatBuffersSwift.xcodeproj/FlatBuffersSwift_Info.plist; sourceTree = SOURCE_ROOT; };
+		__PBXFileRef_Package.swift /* Package.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Package.swift; sourceTree = "<group>"; };
+		__PBXFileRef_Sources/Configs.swift /* Configs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Configs.swift; sourceTree = "<group>"; };
+		__PBXFileRef_Sources/FlatBufferBuilder.swift /* FlatBufferBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlatBufferBuilder.swift; sourceTree = "<group>"; };
+		__PBXFileRef_Sources/FlatBufferReader.swift /* FlatBufferReader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlatBufferReader.swift; sourceTree = "<group>"; };
+		__PBXFileRef_Sources/FlatBuffers.swift /* FlatBuffers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlatBuffers.swift; sourceTree = "<group>"; };
+		__PBXFileRef_Sources/LazyVector.swift /* LazyVector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LazyVector.swift; sourceTree = "<group>"; };
+		__PBXFileRef_Tests/FlatBuffersPerformanceTestDesktop/bench.swift /* bench.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = bench.swift; sourceTree = "<group>"; };
+		__PBXFileRef_Tests/FlatBuffersPerformanceTestDesktop/bench_direct_access.swift /* bench_direct_access.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = bench_direct_access.swift; sourceTree = "<group>"; };
+		__PBXFileRef_Tests/FlatBuffersPerformanceTestDesktop/flatbench.swift /* flatbench.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = flatbench.swift; sourceTree = "<group>"; };
+		__PBXFileRef_Tests/FlatBuffersPerformanceTestDesktop/main.swift /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
+		__PBXFileRef_Tests/FlatBuffersSwift/FlatBuffersGeneratedAPITest.swift /* FlatBuffersGeneratedAPITest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlatBuffersGeneratedAPITest.swift; sourceTree = "<group>"; };
+		__PBXFileRef_Tests/FlatBuffersSwift/FlatBuffersTests.swift /* FlatBuffersTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlatBuffersTests.swift; sourceTree = "<group>"; };
+		__PBXFileRef_Tests/FlatBuffersSwift/LazyVectorAccessTests.swift /* LazyVectorAccessTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LazyVectorAccessTests.swift; sourceTree = "<group>"; };
+		__PBXFileRef_Tests/FlatBuffersSwift/contactList.swift /* contactList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = contactList.swift; sourceTree = "<group>"; };
+		"_____Product_FlatBuffersPerformanceTestDesktopTestSuite" /* FlatBuffersPerformanceTestDesktopTestSuite.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; path = FlatBuffersPerformanceTestDesktopTestSuite.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		"_____Product_FlatBuffersSwift" /* FlatBuffersSwift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = FlatBuffersSwift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		"_____Product_FlatBuffersSwiftTestSuite" /* FlatBuffersSwiftTestSuite.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; path = FlatBuffersSwiftTestSuite.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		0BA0E8411C32B62200B896B7 /* Frameworks */ = {
+		"___LinkPhase_FlatBuffersPerformanceTestDesktopTestSuite" /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
+			buildActionMask = 0;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		0BA0E84C1C32B62200B896B7 /* Frameworks */ = {
+		"___LinkPhase_FlatBuffersSwift" /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				0BE327781CD69BA00067DAC8 /* FlatBuffersSwift.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		0BA0E8761C3AC27800B896B7 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
+			buildActionMask = 0;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		85EE88651CE484900030231F /* Frameworks */ = {
+		"___LinkPhase_FlatBuffersSwiftTestSuite" /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
+			buildActionMask = 0;
 			files = (
-				85EE88711CE486610030231F /* FlatBuffersSwift.framework in Frameworks */,
+				_LinkFileRef_FlatBuffersSwift_via_FlatBuffersSwiftTestSuite /* FlatBuffersSwift.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		0B62C1FC1C493872002500FE /* Example */ = {
+		TestProducts_ /* Tests */ = {
 			isa = PBXGroup;
 			children = (
-				0B62C2031C493912002500FE /* contactList.swift */,
-				0B62C2041C493912002500FE /* contacts.fbs */,
-				0B62C2091C4958B1002500FE /* contactListGenerator.swift */,
-				85EE88761CE487890030231F /* sample_binary */,
+				"_____Product_FlatBuffersPerformanceTestDesktopTestSuite" /* FlatBuffersPerformanceTestDesktopTestSuite.xctest */,
+				"_____Product_FlatBuffersSwiftTestSuite" /* FlatBuffersSwiftTestSuite.xctest */,
 			);
-			path = Example;
+			name = Tests;
 			sourceTree = "<group>";
 		};
-		0BA0E83B1C32B62200B896B7 = {
+		"___RootGroup_" = {
 			isa = PBXGroup;
 			children = (
-				0B62C1FC1C493872002500FE /* Example */,
-				0BA0E8471C32B62200B896B7 /* FlatBuffersSwift */,
-				0BA0E8531C32B62200B896B7 /* FlatBuffersSwiftTests */,
-				0BA0E87A1C3AC27800B896B7 /* FlatBuffersPerformanceTestDesktop */,
-				85EE885C1CDE830A0030231F /* Resources */,
-				0BA0E8461C32B62200B896B7 /* Products */,
+				__PBXFileRef_Package.swift /* Package.swift */,
+				"_____Configs_" /* Configs */,
+				"_____Sources_" /* Sources */,
+				"_______Tests_" /* Tests */,
+				"____Products_" /* Products */,
 			);
 			sourceTree = "<group>";
 		};
-		0BA0E8461C32B62200B896B7 /* Products */ = {
+		"____Products_" /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				0BA0E8451C32B62200B896B7 /* FlatBuffersSwift.framework */,
-				0BA0E84F1C32B62200B896B7 /* FlatBuffersSwiftTests.xctest */,
-				0BA0E8791C3AC27800B896B7 /* FlatBuffersPerformanceTestDesktop */,
-				85EE88681CE484900030231F /* sample_binary */,
+				TestProducts_ /* Tests */,
+				"_____Product_FlatBuffersSwift" /* FlatBuffersSwift.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		0BA0E8471C32B62200B896B7 /* FlatBuffersSwift */ = {
+		"_____Configs_" /* Configs */ = {
 			isa = PBXGroup;
 			children = (
-				0B62C1F01C43F1CD002500FE /* FlatBufferBuilder.swift */,
-				0BA0E86A1C32B6AD00B896B7 /* FlatBufferReader.swift */,
-				0BA0E86C1C32B6AD00B896B7 /* FlatBuffers.swift */,
-				0BA0E8481C32B62200B896B7 /* FlatBuffersSwift.h */,
-				0B62C1E71C3D8ADF002500FE /* LazyVector.swift */,
-				0BE327741CD5F1AA0067DAC8 /* Configs.swift */,
-				0BA0E84A1C32B62200B896B7 /* Info.plist */,
+				__PBXFileRef_FlatBuffersSwift.xcodeproj/Configs/Project.xcconfig /* Project.xcconfig */,
 			);
-			path = FlatBuffersSwift;
+			name = Configs;
 			sourceTree = "<group>";
 		};
-		0BA0E8531C32B62200B896B7 /* FlatBuffersSwiftTests */ = {
+		"_____Sources_" /* Sources */ = {
 			isa = PBXGroup;
 			children = (
-				0BE327761CD69B3A0067DAC8 /* contactList.swift */,
-				0BA0E8671C32B6A300B896B7 /* FlatBuffersTests.swift */,
-				0BA0E8561C32B62200B896B7 /* Info.plist */,
-				0B62C1EA1C3EA5EA002500FE /* LazyVectorAccessTests.swift */,
-				0BBDD0A71C4AAB2A00D955F3 /* FlatBuffersGeneratedAPITest.swift */,
+				"_______Group_FlatBuffersSwift" /* FlatBuffersSwift */,
 			);
-			path = FlatBuffersSwiftTests;
+			name = Sources;
 			sourceTree = "<group>";
 		};
-		0BA0E87A1C3AC27800B896B7 /* FlatBuffersPerformanceTestDesktop */ = {
+		"_______Group_FlatBuffersPerformanceTestDesktopTestSuite" /* FlatBuffersPerformanceTestDesktopTestSuite */ = {
 			isa = PBXGroup;
 			children = (
-				85518AD71CD21D2B00EEBCAC /* bench.fbs */,
-				0BA0E87B1C3AC27800B896B7 /* main.swift */,
-				85518ADA1CD21D4300EEBCAC /* flatbench.swift */,
-				85518AD81CD21D3700EEBCAC /* bench.swift */,
-				0B7541031CE123C000F59B24 /* bench_direct_access.swift */,
+				__PBXFileRef_Tests/FlatBuffersPerformanceTestDesktop/bench.swift /* bench.swift */,
+				__PBXFileRef_Tests/FlatBuffersPerformanceTestDesktop/bench_direct_access.swift /* bench_direct_access.swift */,
+				__PBXFileRef_Tests/FlatBuffersPerformanceTestDesktop/flatbench.swift /* flatbench.swift */,
+				__PBXFileRef_Tests/FlatBuffersPerformanceTestDesktop/main.swift /* main.swift */,
 			);
-			path = FlatBuffersPerformanceTestDesktop;
+			name = FlatBuffersPerformanceTestDesktopTestSuite;
+			path = Tests/FlatBuffersPerformanceTestDesktop;
 			sourceTree = "<group>";
 		};
-		85EE885C1CDE830A0030231F /* Resources */ = {
+		"_______Group_FlatBuffersSwift" /* FlatBuffersSwift */ = {
 			isa = PBXGroup;
 			children = (
-				85EE887E1CE512980030231F /* LICENSE */,
-				85EE887C1CE5128E0030231F /* README.md */,
-				85EE88611CDE83E00030231F /* generate.sh */,
-				85EE88621CDE84640030231F /* .travis.yml */,
+				__PBXFileRef_Sources/Configs.swift /* Configs.swift */,
+				__PBXFileRef_Sources/FlatBufferBuilder.swift /* FlatBufferBuilder.swift */,
+				__PBXFileRef_Sources/FlatBufferReader.swift /* FlatBufferReader.swift */,
+				__PBXFileRef_Sources/FlatBuffers.swift /* FlatBuffers.swift */,
+				__PBXFileRef_Sources/LazyVector.swift /* LazyVector.swift */,
+				__PBXFileRef_FlatBuffersSwift_Info.plist /* FlatBuffersSwift_Info.plist */,
 			);
-			name = Resources;
-			path = Example;
+			name = FlatBuffersSwift;
+			path = Sources;
 			sourceTree = "<group>";
 		};
-		85EE88761CE487890030231F /* sample_binary */ = {
+		"_______Group_FlatBuffersSwiftTestSuite" /* FlatBuffersSwiftTestSuite */ = {
 			isa = PBXGroup;
 			children = (
-				85EE88771CE487890030231F /* main.swift */,
-				85EE88781CE487890030231F /* monster.fbs */,
-				85EE88791CE487890030231F /* monster.swift */,
+				__PBXFileRef_Tests/FlatBuffersSwift/contactList.swift /* contactList.swift */,
+				__PBXFileRef_Tests/FlatBuffersSwift/FlatBuffersGeneratedAPITest.swift /* FlatBuffersGeneratedAPITest.swift */,
+				__PBXFileRef_Tests/FlatBuffersSwift/FlatBuffersTests.swift /* FlatBuffersTests.swift */,
+				__PBXFileRef_Tests/FlatBuffersSwift/LazyVectorAccessTests.swift /* LazyVectorAccessTests.swift */,
+				__PBXFileRef_FlatBuffersSwiftTestSuite_Info.plist /* FlatBuffersSwiftTestSuite_Info.plist */,
 			);
-			path = sample_binary;
+			name = FlatBuffersSwiftTestSuite;
+			path = Tests/FlatBuffersSwift;
+			sourceTree = "<group>";
+		};
+		"_______Tests_" /* Tests */ = {
+			isa = PBXGroup;
+			children = (
+				"_______Group_FlatBuffersPerformanceTestDesktopTestSuite" /* FlatBuffersPerformanceTestDesktopTestSuite */,
+				"_______Group_FlatBuffersSwiftTestSuite" /* FlatBuffersSwiftTestSuite */,
+			);
+			name = Tests;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
-/* Begin PBXHeadersBuildPhase section */
-		0BA0E8421C32B62200B896B7 /* Headers */ = {
-			isa = PBXHeadersBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				0BA0E8491C32B62200B896B7 /* FlatBuffersSwift.h in Headers */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXHeadersBuildPhase section */
-
 /* Begin PBXNativeTarget section */
-		0BA0E8441C32B62200B896B7 /* FlatBuffersSwift */ = {
+		"______Target_FlatBuffersPerformanceTestDesktopTestSuite" /* FlatBuffersPerformanceTestDesktopTestSuite */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 0BA0E8591C32B62200B896B7 /* Build configuration list for PBXNativeTarget "FlatBuffersSwift" */;
+			buildConfigurationList = "_______Confs_FlatBuffersPerformanceTestDesktopTestSuite" /* Build configuration list for PBXNativeTarget "FlatBuffersPerformanceTestDesktopTestSuite" */;
 			buildPhases = (
-				0BA0E8401C32B62200B896B7 /* Sources */,
-				0BA0E8411C32B62200B896B7 /* Frameworks */,
-				0BA0E8421C32B62200B896B7 /* Headers */,
-				0BA0E8431C32B62200B896B7 /* Resources */,
+				CompilePhase_FlatBuffersPerformanceTestDesktopTestSuite /* Sources */,
+				"___LinkPhase_FlatBuffersPerformanceTestDesktopTestSuite" /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = FlatBuffersPerformanceTestDesktopTestSuite;
+			productName = FlatBuffersPerformanceTestDesktopTestSuite;
+			productReference = "_____Product_FlatBuffersPerformanceTestDesktopTestSuite" /* FlatBuffersPerformanceTestDesktopTestSuite.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		"______Target_FlatBuffersSwift" /* FlatBuffersSwift */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = "_______Confs_FlatBuffersSwift" /* Build configuration list for PBXNativeTarget "FlatBuffersSwift" */;
+			buildPhases = (
+				CompilePhase_FlatBuffersSwift /* Sources */,
+				"___LinkPhase_FlatBuffersSwift" /* Frameworks */,
 			);
 			buildRules = (
 			);
@@ -259,428 +207,251 @@
 			);
 			name = FlatBuffersSwift;
 			productName = FlatBuffersSwift;
-			productReference = 0BA0E8451C32B62200B896B7 /* FlatBuffersSwift.framework */;
+			productReference = "_____Product_FlatBuffersSwift" /* FlatBuffersSwift.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		0BA0E84E1C32B62200B896B7 /* FlatBuffersSwiftTests */ = {
+		"______Target_FlatBuffersSwiftTestSuite" /* FlatBuffersSwiftTestSuite */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 0BA0E85C1C32B62200B896B7 /* Build configuration list for PBXNativeTarget "FlatBuffersSwiftTests" */;
+			buildConfigurationList = "_______Confs_FlatBuffersSwiftTestSuite" /* Build configuration list for PBXNativeTarget "FlatBuffersSwiftTestSuite" */;
 			buildPhases = (
-				0BA0E84B1C32B62200B896B7 /* Sources */,
-				0BA0E84C1C32B62200B896B7 /* Frameworks */,
-				0BA0E84D1C32B62200B896B7 /* Resources */,
+				CompilePhase_FlatBuffersSwiftTestSuite /* Sources */,
+				"___LinkPhase_FlatBuffersSwiftTestSuite" /* Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				0BA0E8521C32B62200B896B7 /* PBXTargetDependency */,
+				__Dependency_FlatBuffersSwift /* PBXTargetDependency */,
 			);
-			name = FlatBuffersSwiftTests;
-			productName = FlatBuffersSwiftTests;
-			productReference = 0BA0E84F1C32B62200B896B7 /* FlatBuffersSwiftTests.xctest */;
+			name = FlatBuffersSwiftTestSuite;
+			productName = FlatBuffersSwiftTestSuite;
+			productReference = "_____Product_FlatBuffersSwiftTestSuite" /* FlatBuffersSwiftTestSuite.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
-		};
-		0BA0E8781C3AC27800B896B7 /* FlatBuffersPerformanceTestDesktop */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 0BA0E87D1C3AC27800B896B7 /* Build configuration list for PBXNativeTarget "FlatBuffersPerformanceTestDesktop" */;
-			buildPhases = (
-				0BA0E8751C3AC27800B896B7 /* Sources */,
-				0BA0E8761C3AC27800B896B7 /* Frameworks */,
-				0BA0E8771C3AC27800B896B7 /* CopyFiles */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				0B62C2131C4A9342002500FE /* PBXTargetDependency */,
-			);
-			name = FlatBuffersPerformanceTestDesktop;
-			productName = FlatBuffersPerformanceTestDesktop;
-			productReference = 0BA0E8791C3AC27800B896B7 /* FlatBuffersPerformanceTestDesktop */;
-			productType = "com.apple.product-type.tool";
-		};
-		85EE88671CE484900030231F /* sample_binary */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 85EE886C1CE484900030231F /* Build configuration list for PBXNativeTarget "sample_binary" */;
-			buildPhases = (
-				85EE88641CE484900030231F /* Sources */,
-				85EE88651CE484900030231F /* Frameworks */,
-				85EE88661CE484900030231F /* CopyFiles */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = sample_binary;
-			productName = sample_binary;
-			productReference = 85EE88681CE484900030231F /* sample_binary */;
-			productType = "com.apple.product-type.tool";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		0BA0E83C1C32B62200B896B7 /* Project object */ = {
+		__RootObject_ /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 0730;
-				LastUpgradeCheck = 0720;
-				ORGANIZATIONNAME = maxim.zaks;
+				LastUpgradeCheck = 9999;
 				TargetAttributes = {
-					0BA0E8441C32B62200B896B7 = {
-						CreatedOnToolsVersion = 7.2;
+					"______Target_FlatBuffersPerformanceTestDesktopTestSuite" = {
+						LastSwiftMigration = 0800;
 					};
-					0BA0E84E1C32B62200B896B7 = {
-						CreatedOnToolsVersion = 7.2;
+					"______Target_FlatBuffersSwift" = {
+						LastSwiftMigration = 0800;
 					};
-					0BA0E8781C3AC27800B896B7 = {
-						CreatedOnToolsVersion = 7.2;
-					};
-					85EE88671CE484900030231F = {
-						CreatedOnToolsVersion = 7.3.1;
+					"______Target_FlatBuffersSwiftTestSuite" = {
+						LastSwiftMigration = 0800;
 					};
 				};
 			};
-			buildConfigurationList = 0BA0E83F1C32B62200B896B7 /* Build configuration list for PBXProject "FlatBuffersSwift" */;
+			buildConfigurationList = "___RootConfs_" /* Build configuration list for PBXProject "FlatBuffersSwift" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
 			);
-			mainGroup = 0BA0E83B1C32B62200B896B7;
-			productRefGroup = 0BA0E8461C32B62200B896B7 /* Products */;
+			mainGroup = "___RootGroup_";
+			productRefGroup = "____Products_" /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				0BA0E8441C32B62200B896B7 /* FlatBuffersSwift */,
-				0BA0E84E1C32B62200B896B7 /* FlatBuffersSwiftTests */,
-				0BA0E8781C3AC27800B896B7 /* FlatBuffersPerformanceTestDesktop */,
-				85EE88671CE484900030231F /* sample_binary */,
+				"______Target_FlatBuffersSwift" /* FlatBuffersSwift */,
+				"______Target_FlatBuffersPerformanceTestDesktopTestSuite" /* FlatBuffersPerformanceTestDesktopTestSuite */,
+				"______Target_FlatBuffersSwiftTestSuite" /* FlatBuffersSwiftTestSuite */,
 			);
 		};
 /* End PBXProject section */
 
-/* Begin PBXResourcesBuildPhase section */
-		0BA0E8431C32B62200B896B7 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		0BA0E84D1C32B62200B896B7 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXResourcesBuildPhase section */
-
 /* Begin PBXSourcesBuildPhase section */
-		0BA0E8401C32B62200B896B7 /* Sources */ = {
+		CompilePhase_FlatBuffersPerformanceTestDesktopTestSuite /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
+			buildActionMask = 0;
 			files = (
-				0BE327751CD5F1AA0067DAC8 /* Configs.swift in Sources */,
-				0BA0E8701C32B6AD00B896B7 /* FlatBuffers.swift in Sources */,
-				0B62C1E81C3D8ADF002500FE /* LazyVector.swift in Sources */,
-				0BA0E86E1C32B6AD00B896B7 /* FlatBufferReader.swift in Sources */,
-				0B62C1F31C43F6A2002500FE /* FlatBufferBuilder.swift in Sources */,
+				__src_cc_ref_Tests/FlatBuffersPerformanceTestDesktop/bench.swift /* bench.swift in Sources */,
+				__src_cc_ref_Tests/FlatBuffersPerformanceTestDesktop/bench_direct_access.swift /* bench_direct_access.swift in Sources */,
+				__src_cc_ref_Tests/FlatBuffersPerformanceTestDesktop/flatbench.swift /* flatbench.swift in Sources */,
+				__src_cc_ref_Tests/FlatBuffersPerformanceTestDesktop/main.swift /* main.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		0BA0E84B1C32B62200B896B7 /* Sources */ = {
+		CompilePhase_FlatBuffersSwift /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
+			buildActionMask = 0;
 			files = (
-				0B62C20B1C4958D9002500FE /* contactListGenerator.swift in Sources */,
-				0B62C1EB1C3EA5EA002500FE /* LazyVectorAccessTests.swift in Sources */,
-				0BBDD0A81C4AAB2A00D955F3 /* FlatBuffersGeneratedAPITest.swift in Sources */,
-				0BA0E8681C32B6A300B896B7 /* FlatBuffersTests.swift in Sources */,
-				0BE327771CD69B3A0067DAC8 /* contactList.swift in Sources */,
+				__src_cc_ref_Sources/Configs.swift /* Configs.swift in Sources */,
+				__src_cc_ref_Sources/FlatBufferBuilder.swift /* FlatBufferBuilder.swift in Sources */,
+				__src_cc_ref_Sources/FlatBufferReader.swift /* FlatBufferReader.swift in Sources */,
+				__src_cc_ref_Sources/FlatBuffers.swift /* FlatBuffers.swift in Sources */,
+				__src_cc_ref_Sources/LazyVector.swift /* LazyVector.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		0BA0E8751C3AC27800B896B7 /* Sources */ = {
+		CompilePhase_FlatBuffersSwiftTestSuite /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
+			buildActionMask = 0;
 			files = (
-				85518ADB1CD21D4300EEBCAC /* flatbench.swift in Sources */,
-				0B62C2081C49391F002500FE /* contactList.swift in Sources */,
-				0BA0E87C1C3AC27800B896B7 /* main.swift in Sources */,
-				85518AD91CD21D3700EEBCAC /* bench.swift in Sources */,
-				0B62C20C1C4958DA002500FE /* contactListGenerator.swift in Sources */,
-				0B7541041CE123C000F59B24 /* bench_direct_access.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		85EE88641CE484900030231F /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				85EE887B1CE487890030231F /* monster.swift in Sources */,
-				85EE887A1CE487890030231F /* main.swift in Sources */,
+				__src_cc_ref_Tests/FlatBuffersSwift/contactList.swift /* contactList.swift in Sources */,
+				__src_cc_ref_Tests/FlatBuffersSwift/FlatBuffersGeneratedAPITest.swift /* FlatBuffersGeneratedAPITest.swift in Sources */,
+				__src_cc_ref_Tests/FlatBuffersSwift/FlatBuffersTests.swift /* FlatBuffersTests.swift in Sources */,
+				__src_cc_ref_Tests/FlatBuffersSwift/LazyVectorAccessTests.swift /* LazyVectorAccessTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		0B62C2131C4A9342002500FE /* PBXTargetDependency */ = {
+		__Dependency_FlatBuffersSwift /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 0BA0E8441C32B62200B896B7 /* FlatBuffersSwift */;
-			targetProxy = 0B62C2121C4A9342002500FE /* PBXContainerItemProxy */;
-		};
-		0BA0E8521C32B62200B896B7 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 0BA0E8441C32B62200B896B7 /* FlatBuffersSwift */;
-			targetProxy = 0BA0E8511C32B62200B896B7 /* PBXContainerItemProxy */;
+			target = "______Target_FlatBuffersSwift" /* FlatBuffersSwift */;
+			targetProxy = DCDEEDD81D45C25B0094E30C /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
-		0BA0E8571C32B62200B896B7 /* Debug */ = {
+		_ReleaseConf_FlatBuffersPerformanceTestDesktopTestSuite /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
-				CLANG_CXX_LIBRARY = "libc++";
-				CLANG_ENABLE_MODULES = YES;
-				CLANG_ENABLE_OBJC_ARC = YES;
-				CLANG_WARN_BOOL_CONVERSION = YES;
-				CLANG_WARN_CONSTANT_CONVERSION = YES;
-				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
-				CLANG_WARN_EMPTY_BODY = YES;
-				CLANG_WARN_ENUM_CONVERSION = YES;
-				CLANG_WARN_INT_CONVERSION = YES;
-				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
-				CLANG_WARN_UNREACHABLE_CODE = YES;
-				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "-";
-				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 1;
-				DEBUG_INFORMATION_FORMAT = dwarf;
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
+				FRAMEWORK_SEARCH_PATHS = "$(PLATFORM_DIR)/Developer/Library/Frameworks";
+				INFOPLIST_FILE = FlatBuffersSwift.xcodeproj/FlatBuffersPerformanceTestDesktopTestSuite_Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "@loader_path/../Frameworks";
+				OTHER_LDFLAGS = "$(inherited)";
+				OTHER_SWIFT_FLAGS = "$(inherited)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Release;
+		};
+		_ReleaseConf_FlatBuffersSwift /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
 				ENABLE_TESTABILITY = YES;
-				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
-				GCC_WARN_UNDECLARED_SELECTOR = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.11;
-				MTL_ENABLE_DEBUG_INFO = YES;
-				ONLY_ACTIVE_ARCH = YES;
-				SDKROOT = macosx;
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Debug;
-		};
-		0BA0E8581C32B62200B896B7 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
-				CLANG_CXX_LIBRARY = "libc++";
-				CLANG_ENABLE_MODULES = YES;
-				CLANG_ENABLE_OBJC_ARC = YES;
-				CLANG_WARN_BOOL_CONVERSION = YES;
-				CLANG_WARN_CONSTANT_CONVERSION = YES;
-				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
-				CLANG_WARN_EMPTY_BODY = YES;
-				CLANG_WARN_ENUM_CONVERSION = YES;
-				CLANG_WARN_INT_CONVERSION = YES;
-				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
-				CLANG_WARN_UNREACHABLE_CODE = YES;
-				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "-";
-				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 1;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				ENABLE_NS_ASSERTIONS = NO;
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
-				GCC_WARN_UNDECLARED_SELECTOR = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.11;
-				MTL_ENABLE_DEBUG_INFO = NO;
-				SDKROOT = macosx;
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
+				FRAMEWORK_SEARCH_PATHS = "$(PLATFORM_DIR)/Developer/Library/Frameworks";
+				INFOPLIST_FILE = FlatBuffersSwift.xcodeproj/FlatBuffersSwift_Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(TOOLCHAIN_DIR)/usr/lib/swift/macosx";
+				OTHER_LDFLAGS = "$(inherited)";
+				OTHER_SWIFT_FLAGS = "$(inherited)";
+				PRODUCT_MODULE_NAME = "$(TARGET_NAME:c99extidentifier)";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
-		0BA0E85A1C32B62200B896B7 /* Debug */ = {
+		_ReleaseConf_FlatBuffersSwiftTestSuite /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CLANG_ENABLE_MODULES = YES;
-				CLANG_USE_OPTIMIZATION_PROFILE = NO;
-				COMBINE_HIDPI_IMAGES = YES;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
-				FRAMEWORK_VERSION = A;
-				INFOPLIST_FILE = FlatBuffersSwift/Info.plist;
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = maxim.zaks.FlatBuffersSwift;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SKIP_INSTALL = YES;
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				FRAMEWORK_SEARCH_PATHS = "$(PLATFORM_DIR)/Developer/Library/Frameworks";
+				INFOPLIST_FILE = FlatBuffersSwift.xcodeproj/FlatBuffersSwiftTestSuite_Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "@loader_path/../Frameworks";
+				OTHER_LDFLAGS = "$(inherited)";
+				OTHER_SWIFT_FLAGS = "$(inherited)";
+				SWIFT_VERSION = 3.0;
 			};
-			name = Debug;
+			name = Release;
 		};
-		0BA0E85B1C32B62200B896B7 /* Release */ = {
+		"___DebugConf_FlatBuffersPerformanceTestDesktopTestSuite" /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CLANG_ENABLE_MODULES = YES;
-				CLANG_USE_OPTIMIZATION_PROFILE = NO;
-				COMBINE_HIDPI_IMAGES = YES;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
-				FRAMEWORK_VERSION = A;
-				GCC_OPTIMIZATION_LEVEL = s;
-				INFOPLIST_FILE = FlatBuffersSwift/Info.plist;
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = maxim.zaks.FlatBuffersSwift;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SKIP_INSTALL = YES;
-				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
-			};
-			name = Release;
-		};
-		0BA0E85D1C32B62200B896B7 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CLANG_ENABLE_MODULES = YES;
-				COMBINE_HIDPI_IMAGES = YES;
-				INFOPLIST_FILE = FlatBuffersSwiftTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = maxim.zaks.FlatBuffersSwiftTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				FRAMEWORK_SEARCH_PATHS = "$(PLATFORM_DIR)/Developer/Library/Frameworks";
+				INFOPLIST_FILE = FlatBuffersSwift.xcodeproj/FlatBuffersPerformanceTestDesktopTestSuite_Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "@loader_path/../Frameworks";
+				OTHER_LDFLAGS = "$(inherited)";
+				OTHER_SWIFT_FLAGS = "$(inherited)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
-		0BA0E85E1C32B62200B896B7 /* Release */ = {
+		"___DebugConf_FlatBuffersSwift" /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CLANG_ENABLE_MODULES = YES;
-				COMBINE_HIDPI_IMAGES = YES;
-				INFOPLIST_FILE = FlatBuffersSwiftTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = maxim.zaks.FlatBuffersSwiftTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-			};
-			name = Release;
-		};
-		0BA0E87E1C3AC27800B896B7 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CLANG_USE_OPTIMIZATION_PROFILE = NO;
-				EMBEDDED_CONTENT_CONTAINS_SWIFT = NO;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				ENABLE_TESTABILITY = YES;
+				FRAMEWORK_SEARCH_PATHS = "$(PLATFORM_DIR)/Developer/Library/Frameworks";
+				INFOPLIST_FILE = FlatBuffersSwift.xcodeproj/FlatBuffersSwift_Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(TOOLCHAIN_DIR)/usr/lib/swift/macosx";
+				OTHER_LDFLAGS = "$(inherited)";
+				OTHER_SWIFT_FLAGS = "$(inherited)";
+				PRODUCT_MODULE_NAME = "$(TARGET_NAME:c99extidentifier)";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
-		0BA0E87F1C3AC27800B896B7 /* Release */ = {
+		"___DebugConf_FlatBuffersSwiftTestSuite" /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CLANG_USE_OPTIMIZATION_PROFILE = NO;
-				EMBEDDED_CONTENT_CONTAINS_SWIFT = NO;
-				GCC_OPTIMIZATION_LEVEL = s;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
-			};
-			name = Release;
-		};
-		85EE886D1CE484900030231F /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CLANG_ANALYZER_NONNULL = YES;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
+				FRAMEWORK_SEARCH_PATHS = "$(PLATFORM_DIR)/Developer/Library/Frameworks";
+				INFOPLIST_FILE = FlatBuffersSwift.xcodeproj/FlatBuffersSwiftTestSuite_Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "@loader_path/../Frameworks";
+				OTHER_LDFLAGS = "$(inherited)";
+				OTHER_SWIFT_FLAGS = "$(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
-		85EE886E1CE484900030231F /* Release */ = {
+		"_____Release_" /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = __PBXFileRef_FlatBuffersSwift.xcodeproj/Configs/Project.xcconfig /* Project.xcconfig */;
 			buildSettings = {
-				CLANG_ANALYZER_NONNULL = YES;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
+		};
+		"_______Debug_" /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = __PBXFileRef_FlatBuffersSwift.xcodeproj/Configs/Project.xcconfig /* Project.xcconfig */;
+			buildSettings = {
+				SWIFT_VERSION = 3.0;
+			};
+			name = Debug;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		0BA0E83F1C32B62200B896B7 /* Build configuration list for PBXProject "FlatBuffersSwift" */ = {
+		"___RootConfs_" /* Build configuration list for PBXProject "FlatBuffersSwift" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				0BA0E8571C32B62200B896B7 /* Debug */,
-				0BA0E8581C32B62200B896B7 /* Release */,
+				"_______Debug_" /* Debug */,
+				"_____Release_" /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = Debug;
 		};
-		0BA0E8591C32B62200B896B7 /* Build configuration list for PBXNativeTarget "FlatBuffersSwift" */ = {
+		"_______Confs_FlatBuffersPerformanceTestDesktopTestSuite" /* Build configuration list for PBXNativeTarget "FlatBuffersPerformanceTestDesktopTestSuite" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				0BA0E85A1C32B62200B896B7 /* Debug */,
-				0BA0E85B1C32B62200B896B7 /* Release */,
+				"___DebugConf_FlatBuffersPerformanceTestDesktopTestSuite" /* Debug */,
+				_ReleaseConf_FlatBuffersPerformanceTestDesktopTestSuite /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = Debug;
 		};
-		0BA0E85C1C32B62200B896B7 /* Build configuration list for PBXNativeTarget "FlatBuffersSwiftTests" */ = {
+		"_______Confs_FlatBuffersSwift" /* Build configuration list for PBXNativeTarget "FlatBuffersSwift" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				0BA0E85D1C32B62200B896B7 /* Debug */,
-				0BA0E85E1C32B62200B896B7 /* Release */,
+				"___DebugConf_FlatBuffersSwift" /* Debug */,
+				_ReleaseConf_FlatBuffersSwift /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = Debug;
 		};
-		0BA0E87D1C3AC27800B896B7 /* Build configuration list for PBXNativeTarget "FlatBuffersPerformanceTestDesktop" */ = {
+		"_______Confs_FlatBuffersSwiftTestSuite" /* Build configuration list for PBXNativeTarget "FlatBuffersSwiftTestSuite" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				0BA0E87E1C3AC27800B896B7 /* Debug */,
-				0BA0E87F1C3AC27800B896B7 /* Release */,
+				"___DebugConf_FlatBuffersSwiftTestSuite" /* Debug */,
+				_ReleaseConf_FlatBuffersSwiftTestSuite /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		85EE886C1CE484900030231F /* Build configuration list for PBXNativeTarget "sample_binary" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				85EE886D1CE484900030231F /* Debug */,
-				85EE886E1CE484900030231F /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = Debug;
 		};
 /* End XCConfigurationList section */
 	};
-	rootObject = 0BA0E83C1C32B62200B896B7 /* Project object */;
+	rootObject = __RootObject_ /* Project object */;
 }

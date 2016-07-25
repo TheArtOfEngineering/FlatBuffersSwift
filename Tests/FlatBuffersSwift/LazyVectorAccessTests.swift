@@ -45,7 +45,7 @@ class LazyVectorAccessTests: XCTestCase {
 
     func testIteratingOverLazyVector() {
         let count = 5
-        var called = [Bool](count: count, repeatedValue: false)
+        var called = [Bool](repeating: false, count: count)
         let vector = LazyVector(count: count) { (index)-> Int in
             called[index] = true
             return 4

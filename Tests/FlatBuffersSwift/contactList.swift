@@ -27,7 +27,7 @@ extension ContactList : PoolableInstances {
 	}
 }
 public extension ContactList {
-	private static func create(reader : FlatBufferReader, objectOffset : Offset?) -> ContactList? {
+	private static func create(_ reader : FlatBufferReader, objectOffset : Offset?) -> ContactList? {
 		guard let objectOffset = objectOffset else {
 			return nil
 		}
@@ -55,26 +55,26 @@ public extension ContactList {
 	}
 }
 public extension ContactList {
-	public static func fromByteArray(data : UnsafeBufferPointer<UInt8>, config : BinaryReadConfig = BinaryReadConfig()) -> ContactList {
+	public static func fromByteArray(_ data : UnsafeBufferPointer<UInt8>, config : BinaryReadConfig = BinaryReadConfig()) -> ContactList {
 		let reader = FlatBufferReader.create(data, config: config)
 		let objectOffset = reader.rootObjectOffset
 		let result = create(reader, objectOffset : objectOffset)!
 		FlatBufferReader.reuse(reader)
 		return result
 	}
-	public static func fromRawMemory(data : UnsafeMutablePointer<UInt8>, count : Int, config : BinaryReadConfig = BinaryReadConfig()) -> ContactList {
+	public static func fromRawMemory(_ data : UnsafeMutablePointer<UInt8>, count : Int, config : BinaryReadConfig = BinaryReadConfig()) -> ContactList {
 		let reader = FlatBufferReader.create(data, count: count, config: config)
 		let objectOffset = reader.rootObjectOffset
 		let result = create(reader, objectOffset : objectOffset)!
 		FlatBufferReader.reuse(reader)
 		return result
 	}
-	public static func fromFlatBufferReader(flatBufferReader : FlatBufferReader) -> ContactList {
+	public static func fromFlatBufferReader(_ flatBufferReader : FlatBufferReader) -> ContactList {
 		return create(flatBufferReader, objectOffset : flatBufferReader.rootObjectOffset)!
 	}
 }
 public extension ContactList {
-	public func toByteArray (config : BinaryBuildConfig = BinaryBuildConfig()) -> [UInt8] {
+	public func toByteArray (_ config : BinaryBuildConfig = BinaryBuildConfig()) -> [UInt8] {
 		let builder = FlatBufferBuilder.create(config)
 		let offset = addToByteArray(builder)
 		performLateBindings(builder)
@@ -86,7 +86,7 @@ public extension ContactList {
 }
 
 public extension ContactList {
-	public func toFlatBufferBuilder (builder : FlatBufferBuilder) -> Void {
+	public func toFlatBufferBuilder (_ builder : FlatBufferBuilder) -> Void {
 		let offset = addToByteArray(builder)
 		performLateBindings(builder)
 		try! builder.finish(offset, fileIdentifier: nil)
@@ -142,7 +142,7 @@ public func ==(t1 : ContactList.LazyAccess, t2 : ContactList.LazyAccess) -> Bool
 
 extension ContactList {
 public struct Fast : Hashable {
-	private var buffer : UnsafePointer<UInt8> = nil
+	private var buffer : UnsafePointer<UInt8>? = nil
 	private var myOffset : Offset = 0
 	public init(buffer: UnsafePointer<UInt8>, myOffset: Offset){
 		self.buffer = buffer
@@ -153,14 +153,14 @@ public struct Fast : Hashable {
 		self.myOffset = UnsafePointer<Offset>(buffer.advancedBy(0)).memory
 	}
 	public func getData() -> UnsafePointer<UInt8> {
-		return buffer
+		return buffer!
 	}
 	public var lastModified : Int64 { 
 		get { return FlatBufferReaderFast.get(buffer, myOffset, propertyIndex: 0, defaultValue: 0) }
 		set { try!FlatBufferReaderFast.set(UnsafeMutablePointer<UInt8>(buffer), myOffset, propertyIndex: 0, value: newValue) }
 	}
 	public struct EntriesVector {
-		private var buffer : UnsafePointer<UInt8> = nil
+		private var buffer : UnsafePointer<UInt8>? = nil
 		private var myOffset : Offset = 0
 		private let offsetList : Offset?
 		private init(buffer b: UnsafePointer<UInt8>, myOffset o: Offset ) {
@@ -186,7 +186,7 @@ public func ==(t1 : ContactList.Fast, t2 : ContactList.Fast) -> Bool {
 	return t1.buffer == t2.buffer && t1.myOffset == t2.myOffset
 }
 public extension ContactList {
-	private func addToByteArray(builder : FlatBufferBuilder) -> Offset {
+	private func addToByteArray(_ builder : FlatBufferBuilder) -> Offset {
 		if builder.config.uniqueTables {
 			if let myOffset = builder.cache[ObjectIdentifier(self)] {
 				return myOffset
@@ -224,15 +224,15 @@ extension ContactList {
 	public func toJSON() -> String{
 		var properties : [String] = []
 		properties.append("\"lastModified\":\(lastModified)")
-		properties.append("\"entries\":[\(entries.map({$0 == nil ? "null" : $0!.toJSON()}).joinWithSeparator(","))]")
+		properties.append("\"entries\":[\(entries.map({$0 == nil ? "null" : $0!.toJSON()}).joined(separator: ","))]")
 		
-		return "{\(properties.joinWithSeparator(","))}"
+		return "{\(properties.joined(separator: ","))}"
 	}
 
-	public static func fromJSON(dict : NSDictionary) -> ContactList {
+	public static func fromJSON(_ dict : NSDictionary) -> ContactList {
 		let result = ContactList()
 		if let lastModified = dict["lastModified"] as? NSNumber {
-			result.lastModified = lastModified.longLongValue
+			result.lastModified = lastModified.int64Value
 		}
 		if let entries = dict["entries"] as? NSArray {
 			result.entries = ContiguousArray(entries.map({
@@ -250,28 +250,28 @@ extension ContactList {
 	}
 }
 		public enum Gender : Int8 {
-			case None, Male, Female
+			case none, male, female
 		}
 		
 		extension Gender {
 			func toJSON() -> String {
 				switch self {
-				case None:
+				case none:
 					return "\"None\""
-				case Male:
+				case male:
 					return "\"Male\""
-				case Female:
+				case female:
 					return "\"Female\""
 				}
 			}
-			static func fromJSON(value : String) -> Gender? {
+			static func fromJSON(_ value : String) -> Gender? {
 			switch value {
 			case "None":
-				return None
+				return none
 			case "Male":
-				return Male
+				return male
 			case "Female":
-				return Female
+				return female
 			default:
 				return nil
 			}
@@ -279,32 +279,32 @@ extension ContactList {
 }
 		
 		public enum Mood : Int8 {
-			case Funny, Serious, Angry, Humble
+			case funny, serious, angry, humble
 		}
 		
 		extension Mood {
 			func toJSON() -> String {
 				switch self {
-				case Funny:
+				case funny:
 					return "\"Funny\""
-				case Serious:
+				case serious:
 					return "\"Serious\""
-				case Angry:
+				case angry:
 					return "\"Angry\""
-				case Humble:
+				case humble:
 					return "\"Humble\""
 				}
 			}
-			static func fromJSON(value : String) -> Mood? {
+			static func fromJSON(_ value : String) -> Mood? {
 			switch value {
 			case "Funny":
-				return Funny
+				return funny
 			case "Serious":
-				return Serious
+				return serious
 			case "Angry":
-				return Angry
+				return angry
 			case "Humble":
-				return Humble
+				return humble
 			default:
 				return nil
 			}
@@ -321,10 +321,10 @@ public final class Contact {
 				return s
 			}
 			if let s = name_ss {
-				name_s = s.stringValue
+				name_s = String(s)
 			}
 			if let s = name_b {
-				name_s = String.init(bytesNoCopy: UnsafeMutablePointer<UInt8>(s.baseAddress), length: s.count, encoding: NSUTF8StringEncoding, freeWhenDone: false)
+				name_s = String.init(bytesNoCopy: UnsafeMutablePointer<UInt8>(s.baseAddress!), length: s.count, encoding: String.Encoding.utf8, freeWhenDone: false)
 			}
 			return name_s
 		}
@@ -334,7 +334,7 @@ public final class Contact {
 			name_b = nil
 		}
 	}
-	public func nameStaticString(newValue : StaticString) {
+	public func nameStaticString(_ newValue : StaticString) {
 		name_ss = newValue
 		name_s = nil
 		name_b = nil
@@ -345,7 +345,7 @@ public final class Contact {
 	private var name_ss : StaticString? = nil
 	
 	public var birthday : Date? = nil
-	public var gender : Gender? = Gender.None
+	public var gender : Gender? = Gender.none
 	public var tags : ContiguousArray<String?> = []
 	public var addressEntries : ContiguousArray<AddressEntry?> = []
 	public var currentLoccation : GeoLocation? = nil
@@ -382,7 +382,7 @@ extension Contact : PoolableInstances {
 			birthday = nil
 			Date.reuseInstance(&x)
 		}
-		gender = Gender.None
+		gender = Gender.none
 		tags = []
 		while (addressEntries.count > 0) {
 			var x = addressEntries.removeLast()!
@@ -394,7 +394,7 @@ extension Contact : PoolableInstances {
 	}
 }
 public extension Contact {
-	private static func create(reader : FlatBufferReader, objectOffset : Offset?) -> Contact? {
+	private static func create(_ reader : FlatBufferReader, objectOffset : Offset?) -> Contact? {
 		guard let objectOffset = objectOffset else {
 			return nil
 		}
@@ -536,7 +536,7 @@ public func ==(t1 : Contact.LazyAccess, t2 : Contact.LazyAccess) -> Bool {
 
 extension Contact {
 public struct Fast : Hashable {
-	private var buffer : UnsafePointer<UInt8> = nil
+	private var buffer : UnsafePointer<UInt8>? = nil
 	private var myOffset : Offset = 0
 	public init(buffer: UnsafePointer<UInt8>, myOffset: Offset){
 		self.buffer = buffer
@@ -558,7 +558,7 @@ public struct Fast : Hashable {
 		}
 	}
 	public struct TagsVector {
-		private var buffer : UnsafePointer<UInt8> = nil
+		private var buffer : UnsafePointer<UInt8>? = nil
 		private var myOffset : Offset = 0
 		private let offsetList : Offset?
 		private init(buffer b: UnsafePointer<UInt8>, myOffset o: Offset ) {
@@ -578,7 +578,7 @@ public struct Fast : Hashable {
 	}
 	public lazy var tags : TagsVector = TagsVector(buffer: self.buffer, myOffset: self.myOffset)
 	public struct AddressEntriesVector {
-		private var buffer : UnsafePointer<UInt8> = nil
+		private var buffer : UnsafePointer<UInt8>? = nil
 		private var myOffset : Offset = 0
 		private let offsetList : Offset?
 		private init(buffer b: UnsafePointer<UInt8>, myOffset o: Offset ) {
@@ -606,7 +606,7 @@ public struct Fast : Hashable {
 		}
 	}
 	public struct PreviousLocationsVector {
-		private var buffer : UnsafePointer<UInt8> = nil
+		private var buffer : UnsafePointer<UInt8>? = nil
 		private var myOffset : Offset = 0
 		private let offsetList : Offset?
 		private init(buffer b: UnsafePointer<UInt8>, myOffset o: Offset ) {
@@ -628,7 +628,7 @@ public struct Fast : Hashable {
 	}
 	public lazy var previousLocations : PreviousLocationsVector = PreviousLocationsVector(buffer: self.buffer, myOffset: self.myOffset)
 	public struct MoodsVector {
-		private var buffer : UnsafePointer<UInt8> = nil
+		private var buffer : UnsafePointer<UInt8>? = nil
 		private var myOffset : Offset = 0
 		private let offsetList : Offset?
 		private init(buffer b: UnsafePointer<UInt8>, myOffset o: Offset ) {
@@ -656,7 +656,7 @@ public func ==(t1 : Contact.Fast, t2 : Contact.Fast) -> Bool {
 	return t1.buffer == t2.buffer && t1.myOffset == t2.myOffset
 }
 public extension Contact {
-	private func addToByteArray(builder : FlatBufferBuilder) -> Offset {
+	private func addToByteArray(_ builder : FlatBufferBuilder) -> Offset {
 		if builder.config.uniqueTables {
 			if let myOffset = builder.cache[ObjectIdentifier(self)] {
 				return myOffset
@@ -765,19 +765,19 @@ extension Contact {
 		if let gender = gender{
 			properties.append("\"gender\":\(gender.toJSON())")
 		}
-		let tags_List = tags.map({$0 == nil ? "null" : "\"\($0!)\""}).joinWithSeparator(",")
+		let tags_List = tags.map({$0 == nil ? "null" : "\"\($0!)\""}).joined(separator: ",")
 		properties.append("\"tags\":[\(tags_List)]")
-		properties.append("\"addressEntries\":[\(addressEntries.map({$0 == nil ? "null" : $0!.toJSON()}).joinWithSeparator(","))]")
+		properties.append("\"addressEntries\":[\(addressEntries.map({$0 == nil ? "null" : $0!.toJSON()}).joined(separator: ","))]")
 		if let currentLoccation = currentLoccation{
 			properties.append("\"currentLoccation\":\(currentLoccation.toJSON())")
 		}
-		properties.append("\"previousLocations\":[\(previousLocations.map({$0 == nil ? "null" : $0!.toJSON()}).joinWithSeparator(","))]")
-		properties.append("\"moods\":[\(moods.map({$0 == nil ? "null" : $0!.toJSON()}).joinWithSeparator(","))]")
+		properties.append("\"previousLocations\":[\(previousLocations.map({$0 == nil ? "null" : $0!.toJSON()}).joined(separator: ","))]")
+		properties.append("\"moods\":[\(moods.map({$0 == nil ? "null" : $0!.toJSON()}).joined(separator: ","))]")
 		
-		return "{\(properties.joinWithSeparator(","))}"
+		return "{\(properties.joined(separator: ","))}"
 	}
 
-	public static func fromJSON(dict : NSDictionary) -> Contact {
+	public static func fromJSON(_ dict : NSDictionary) -> Contact {
 		let result = Contact()
 		if let name = dict["name"] as? NSString {
 			result.name = name as String
@@ -853,7 +853,7 @@ extension Date : PoolableInstances {
 	}
 }
 public extension Date {
-	private static func create(reader : FlatBufferReader, objectOffset : Offset?) -> Date? {
+	private static func create(_ reader : FlatBufferReader, objectOffset : Offset?) -> Date? {
 		guard let objectOffset = objectOffset else {
 			return nil
 		}
@@ -911,7 +911,7 @@ public func ==(t1 : Date.LazyAccess, t2 : Date.LazyAccess) -> Bool {
 
 extension Date {
 public struct Fast : Hashable {
-	private var buffer : UnsafePointer<UInt8> = nil
+	private var buffer : UnsafePointer<UInt8>? = nil
 	private var myOffset : Offset = 0
 	public init(buffer: UnsafePointer<UInt8>, myOffset: Offset){
 		self.buffer = buffer
@@ -936,7 +936,7 @@ public func ==(t1 : Date.Fast, t2 : Date.Fast) -> Bool {
 	return t1.buffer == t2.buffer && t1.myOffset == t2.myOffset
 }
 public extension Date {
-	private func addToByteArray(builder : FlatBufferBuilder) -> Offset {
+	private func addToByteArray(_ builder : FlatBufferBuilder) -> Offset {
 		if builder.config.uniqueTables {
 			if let myOffset = builder.cache[ObjectIdentifier(self)] {
 				return myOffset
@@ -960,19 +960,19 @@ extension Date {
 		properties.append("\"month\":\(month)")
 		properties.append("\"year\":\(year)")
 		
-		return "{\(properties.joinWithSeparator(","))}"
+		return "{\(properties.joined(separator: ","))}"
 	}
 
-	public static func fromJSON(dict : NSDictionary) -> Date {
+	public static func fromJSON(_ dict : NSDictionary) -> Date {
 		let result = Date()
 		if let day = dict["day"] as? NSNumber {
-			result.day = day.charValue
+			result.day = day.int8Value
 		}
 		if let month = dict["month"] as? NSNumber {
-			result.month = month.charValue
+			result.month = month.int8Value
 		}
 		if let year = dict["year"] as? NSNumber {
-			result.year = year.shortValue
+			result.year = year.int16Value
 		}
 		return result
 	}
@@ -994,9 +994,9 @@ extension S1 {
 		return "{\(iProperty)}"
 	}
 	
-	public static func fromJSON(dict : NSDictionary) -> S1 {
+	public static func fromJSON(_ dict : NSDictionary) -> S1 {
 		return S1(
-		i: (dict["i"] as! NSNumber).intValue
+		i: (dict["i"] as! NSNumber).int32Value
 		)
 	}
 }
@@ -1019,7 +1019,7 @@ extension GeoLocation {
 		return "{\(latitudeProperty),\(longitudeProperty),\(elevationProperty),\(sProperty)}"
 	}
 	
-	public static func fromJSON(dict : NSDictionary) -> GeoLocation {
+	public static func fromJSON(_ dict : NSDictionary) -> GeoLocation {
 		return GeoLocation(
 		latitude: (dict["latitude"] as! NSNumber).doubleValue,
 		longitude: (dict["longitude"] as! NSNumber).doubleValue,
@@ -1048,7 +1048,7 @@ extension AddressEntry : PoolableInstances {
 	}
 }
 public extension AddressEntry {
-	private static func create(reader : FlatBufferReader, objectOffset : Offset?) -> AddressEntry? {
+	private static func create(_ reader : FlatBufferReader, objectOffset : Offset?) -> AddressEntry? {
 		guard let objectOffset = objectOffset else {
 			return nil
 		}
@@ -1098,7 +1098,7 @@ public func ==(t1 : AddressEntry.LazyAccess, t2 : AddressEntry.LazyAccess) -> Bo
 
 extension AddressEntry {
 public struct Fast : Hashable {
-	private var buffer : UnsafePointer<UInt8> = nil
+	private var buffer : UnsafePointer<UInt8>? = nil
 	private var myOffset : Offset = 0
 	public init(buffer: UnsafePointer<UInt8>, myOffset: Offset){
 		self.buffer = buffer
@@ -1118,7 +1118,7 @@ public func ==(t1 : AddressEntry.Fast, t2 : AddressEntry.Fast) -> Bool {
 	return t1.buffer == t2.buffer && t1.myOffset == t2.myOffset
 }
 public extension AddressEntry {
-	private func addToByteArray(builder : FlatBufferBuilder) -> Offset {
+	private func addToByteArray(_ builder : FlatBufferBuilder) -> Offset {
 		if builder.config.uniqueTables {
 			if let myOffset = builder.cache[ObjectIdentifier(self)] {
 				return myOffset
@@ -1146,13 +1146,13 @@ extension AddressEntry {
 			properties.append("\"address\":\(address.toJSON()),\"address_type\":\(address.jsonTypeName())")
 		}
 		
-		return "{\(properties.joinWithSeparator(","))}"
+		return "{\(properties.joined(separator: ","))}"
 	}
 
-	public static func fromJSON(dict : NSDictionary) -> AddressEntry {
+	public static func fromJSON(_ dict : NSDictionary) -> AddressEntry {
 		let result = AddressEntry()
 		if let order = dict["order"] as? NSNumber {
-			result.order = order.intValue
+			result.order = order.int32Value
 		}
 		if let address = dict["address"] as? NSDictionary, let address_type = dict["address_type"] as? NSString {
 			result.address = fromJSON_Address(address, typeName: address_type as String)
@@ -1174,10 +1174,10 @@ public final class PostalAddress {
 				return s
 			}
 			if let s = country_ss {
-				country_s = s.stringValue
+				country_s = String(s)
 			}
 			if let s = country_b {
-				country_s = String.init(bytesNoCopy: UnsafeMutablePointer<UInt8>(s.baseAddress), length: s.count, encoding: NSUTF8StringEncoding, freeWhenDone: false)
+				country_s = String.init(bytesNoCopy: UnsafeMutablePointer<UInt8>(s.baseAddress!), length: s.count, encoding: String.Encoding.utf8, freeWhenDone: false)
 			}
 			return country_s
 		}
@@ -1187,7 +1187,7 @@ public final class PostalAddress {
 			country_b = nil
 		}
 	}
-	public func countryStaticString(newValue : StaticString) {
+	public func countryStaticString(_ newValue : StaticString) {
 		country_ss = newValue
 		country_s = nil
 		country_b = nil
@@ -1203,10 +1203,10 @@ public final class PostalAddress {
 				return s
 			}
 			if let s = city_ss {
-				city_s = s.stringValue
+				city_s = String(s)
 			}
 			if let s = city_b {
-				city_s = String.init(bytesNoCopy: UnsafeMutablePointer<UInt8>(s.baseAddress), length: s.count, encoding: NSUTF8StringEncoding, freeWhenDone: false)
+				city_s = String.init(bytesNoCopy: UnsafeMutablePointer<UInt8>(s.baseAddress!), length: s.count, encoding: String.Encoding.utf8, freeWhenDone: false)
 			}
 			return city_s
 		}
@@ -1216,7 +1216,7 @@ public final class PostalAddress {
 			city_b = nil
 		}
 	}
-	public func cityStaticString(newValue : StaticString) {
+	public func cityStaticString(_ newValue : StaticString) {
 		city_ss = newValue
 		city_s = nil
 		city_b = nil
@@ -1233,10 +1233,10 @@ public final class PostalAddress {
 				return s
 			}
 			if let s = streetAndNumber_ss {
-				streetAndNumber_s = s.stringValue
+				streetAndNumber_s = String(s)
 			}
 			if let s = streetAndNumber_b {
-				streetAndNumber_s = String.init(bytesNoCopy: UnsafeMutablePointer<UInt8>(s.baseAddress), length: s.count, encoding: NSUTF8StringEncoding, freeWhenDone: false)
+				streetAndNumber_s = String.init(bytesNoCopy: UnsafeMutablePointer<UInt8>(s.baseAddress!), length: s.count, encoding: String.Encoding.utf8, freeWhenDone: false)
 			}
 			return streetAndNumber_s
 		}
@@ -1246,7 +1246,7 @@ public final class PostalAddress {
 			streetAndNumber_b = nil
 		}
 	}
-	public func streetAndNumberStaticString(newValue : StaticString) {
+	public func streetAndNumberStaticString(_ newValue : StaticString) {
 		streetAndNumber_ss = newValue
 		streetAndNumber_s = nil
 		streetAndNumber_b = nil
@@ -1280,7 +1280,7 @@ extension PostalAddress : PoolableInstances {
 	}
 }
 public extension PostalAddress {
-	private static func create(reader : FlatBufferReader, objectOffset : Offset?) -> PostalAddress? {
+	private static func create(_ reader : FlatBufferReader, objectOffset : Offset?) -> PostalAddress? {
 		guard let objectOffset = objectOffset else {
 			return nil
 		}
@@ -1334,7 +1334,7 @@ public func ==(t1 : PostalAddress.LazyAccess, t2 : PostalAddress.LazyAccess) -> 
 
 extension PostalAddress {
 public struct Fast : Hashable {
-	private var buffer : UnsafePointer<UInt8> = nil
+	private var buffer : UnsafePointer<UInt8>? = nil
 	private var myOffset : Offset = 0
 	public init(buffer: UnsafePointer<UInt8>, myOffset: Offset){
 		self.buffer = buffer
@@ -1354,7 +1354,7 @@ public func ==(t1 : PostalAddress.Fast, t2 : PostalAddress.Fast) -> Bool {
 	return t1.buffer == t2.buffer && t1.myOffset == t2.myOffset
 }
 public extension PostalAddress {
-	private func addToByteArray(builder : FlatBufferBuilder) -> Offset {
+	private func addToByteArray(_ builder : FlatBufferBuilder) -> Offset {
 		if builder.config.uniqueTables {
 			if let myOffset = builder.cache[ObjectIdentifier(self)] {
 				return myOffset
@@ -1413,10 +1413,10 @@ extension PostalAddress {
 			properties.append("\"streetAndNumber\":\"\(streetAndNumber)\"")
 		}
 		
-		return "{\(properties.joinWithSeparator(","))}"
+		return "{\(properties.joined(separator: ","))}"
 	}
 
-	public static func fromJSON(dict : NSDictionary) -> PostalAddress {
+	public static func fromJSON(_ dict : NSDictionary) -> PostalAddress {
 		let result = PostalAddress()
 		if let country = dict["country"] as? NSString {
 			result.country = country as String
@@ -1425,7 +1425,7 @@ extension PostalAddress {
 			result.city = city as String
 		}
 		if let postalCode = dict["postalCode"] as? NSNumber {
-			result.postalCode = postalCode.intValue
+			result.postalCode = postalCode.int32Value
 		}
 		if let streetAndNumber = dict["streetAndNumber"] as? NSString {
 			result.streetAndNumber = streetAndNumber as String
@@ -1447,10 +1447,10 @@ public final class EmailAddress {
 				return s
 			}
 			if let s = mailto_ss {
-				mailto_s = s.stringValue
+				mailto_s = String(s)
 			}
 			if let s = mailto_b {
-				mailto_s = String.init(bytesNoCopy: UnsafeMutablePointer<UInt8>(s.baseAddress), length: s.count, encoding: NSUTF8StringEncoding, freeWhenDone: false)
+				mailto_s = String.init(bytesNoCopy: UnsafeMutablePointer<UInt8>(s.baseAddress!), length: s.count, encoding: String.Encoding.utf8, freeWhenDone: false)
 			}
 			return mailto_s
 		}
@@ -1460,7 +1460,7 @@ public final class EmailAddress {
 			mailto_b = nil
 		}
 	}
-	public func mailtoStaticString(newValue : StaticString) {
+	public func mailtoStaticString(_ newValue : StaticString) {
 		mailto_ss = newValue
 		mailto_s = nil
 		mailto_b = nil
@@ -1485,7 +1485,7 @@ extension EmailAddress : PoolableInstances {
 	}
 }
 public extension EmailAddress {
-	private static func create(reader : FlatBufferReader, objectOffset : Offset?) -> EmailAddress? {
+	private static func create(_ reader : FlatBufferReader, objectOffset : Offset?) -> EmailAddress? {
 		guard let objectOffset = objectOffset else {
 			return nil
 		}
@@ -1530,7 +1530,7 @@ public func ==(t1 : EmailAddress.LazyAccess, t2 : EmailAddress.LazyAccess) -> Bo
 
 extension EmailAddress {
 public struct Fast : Hashable {
-	private var buffer : UnsafePointer<UInt8> = nil
+	private var buffer : UnsafePointer<UInt8>? = nil
 	private var myOffset : Offset = 0
 	public init(buffer: UnsafePointer<UInt8>, myOffset: Offset){
 		self.buffer = buffer
@@ -1544,7 +1544,7 @@ public func ==(t1 : EmailAddress.Fast, t2 : EmailAddress.Fast) -> Bool {
 	return t1.buffer == t2.buffer && t1.myOffset == t2.myOffset
 }
 public extension EmailAddress {
-	private func addToByteArray(builder : FlatBufferBuilder) -> Offset {
+	private func addToByteArray(_ builder : FlatBufferBuilder) -> Offset {
 		if builder.config.uniqueTables {
 			if let myOffset = builder.cache[ObjectIdentifier(self)] {
 				return myOffset
@@ -1575,10 +1575,10 @@ extension EmailAddress {
 			properties.append("\"mailto\":\"\(mailto)\"")
 		}
 		
-		return "{\(properties.joinWithSeparator(","))}"
+		return "{\(properties.joined(separator: ","))}"
 	}
 
-	public static func fromJSON(dict : NSDictionary) -> EmailAddress {
+	public static func fromJSON(_ dict : NSDictionary) -> EmailAddress {
 		let result = EmailAddress()
 		if let mailto = dict["mailto"] as? NSString {
 			result.mailto = mailto as String
@@ -1600,10 +1600,10 @@ public final class WebAddress {
 				return s
 			}
 			if let s = url_ss {
-				url_s = s.stringValue
+				url_s = String(s)
 			}
 			if let s = url_b {
-				url_s = String.init(bytesNoCopy: UnsafeMutablePointer<UInt8>(s.baseAddress), length: s.count, encoding: NSUTF8StringEncoding, freeWhenDone: false)
+				url_s = String.init(bytesNoCopy: UnsafeMutablePointer<UInt8>(s.baseAddress!), length: s.count, encoding: String.Encoding.utf8, freeWhenDone: false)
 			}
 			return url_s
 		}
@@ -1613,7 +1613,7 @@ public final class WebAddress {
 			url_b = nil
 		}
 	}
-	public func urlStaticString(newValue : StaticString) {
+	public func urlStaticString(_ newValue : StaticString) {
 		url_ss = newValue
 		url_s = nil
 		url_b = nil
@@ -1638,7 +1638,7 @@ extension WebAddress : PoolableInstances {
 	}
 }
 public extension WebAddress {
-	private static func create(reader : FlatBufferReader, objectOffset : Offset?) -> WebAddress? {
+	private static func create(_ reader : FlatBufferReader, objectOffset : Offset?) -> WebAddress? {
 		guard let objectOffset = objectOffset else {
 			return nil
 		}
@@ -1683,7 +1683,7 @@ public func ==(t1 : WebAddress.LazyAccess, t2 : WebAddress.LazyAccess) -> Bool {
 
 extension WebAddress {
 public struct Fast : Hashable {
-	private var buffer : UnsafePointer<UInt8> = nil
+	private var buffer : UnsafePointer<UInt8>? = nil
 	private var myOffset : Offset = 0
 	public init(buffer: UnsafePointer<UInt8>, myOffset: Offset){
 		self.buffer = buffer
@@ -1697,7 +1697,7 @@ public func ==(t1 : WebAddress.Fast, t2 : WebAddress.Fast) -> Bool {
 	return t1.buffer == t2.buffer && t1.myOffset == t2.myOffset
 }
 public extension WebAddress {
-	private func addToByteArray(builder : FlatBufferBuilder) -> Offset {
+	private func addToByteArray(_ builder : FlatBufferBuilder) -> Offset {
 		if builder.config.uniqueTables {
 			if let myOffset = builder.cache[ObjectIdentifier(self)] {
 				return myOffset
@@ -1728,10 +1728,10 @@ extension WebAddress {
 			properties.append("\"url\":\"\(url)\"")
 		}
 		
-		return "{\(properties.joinWithSeparator(","))}"
+		return "{\(properties.joined(separator: ","))}"
 	}
 
-	public static func fromJSON(dict : NSDictionary) -> WebAddress {
+	public static func fromJSON(_ dict : NSDictionary) -> WebAddress {
 		let result = WebAddress()
 		if let url = dict["url"] as? NSString {
 			result.url = url as String
@@ -1753,10 +1753,10 @@ public final class TelephoneNumber {
 				return s
 			}
 			if let s = number_ss {
-				number_s = s.stringValue
+				number_s = String(s)
 			}
 			if let s = number_b {
-				number_s = String.init(bytesNoCopy: UnsafeMutablePointer<UInt8>(s.baseAddress), length: s.count, encoding: NSUTF8StringEncoding, freeWhenDone: false)
+				number_s = String.init(bytesNoCopy: UnsafeMutablePointer<UInt8>(s.baseAddress!), length: s.count, encoding: String.Encoding.utf8, freeWhenDone: false)
 			}
 			return number_s
 		}
@@ -1766,7 +1766,7 @@ public final class TelephoneNumber {
 			number_b = nil
 		}
 	}
-	public func numberStaticString(newValue : StaticString) {
+	public func numberStaticString(_ newValue : StaticString) {
 		number_ss = newValue
 		number_s = nil
 		number_b = nil
@@ -1791,7 +1791,7 @@ extension TelephoneNumber : PoolableInstances {
 	}
 }
 public extension TelephoneNumber {
-	private static func create(reader : FlatBufferReader, objectOffset : Offset?) -> TelephoneNumber? {
+	private static func create(_ reader : FlatBufferReader, objectOffset : Offset?) -> TelephoneNumber? {
 		guard let objectOffset = objectOffset else {
 			return nil
 		}
@@ -1836,7 +1836,7 @@ public func ==(t1 : TelephoneNumber.LazyAccess, t2 : TelephoneNumber.LazyAccess)
 
 extension TelephoneNumber {
 public struct Fast : Hashable {
-	private var buffer : UnsafePointer<UInt8> = nil
+	private var buffer : UnsafePointer<UInt8>? = nil
 	private var myOffset : Offset = 0
 	public init(buffer: UnsafePointer<UInt8>, myOffset: Offset){
 		self.buffer = buffer
@@ -1850,7 +1850,7 @@ public func ==(t1 : TelephoneNumber.Fast, t2 : TelephoneNumber.Fast) -> Bool {
 	return t1.buffer == t2.buffer && t1.myOffset == t2.myOffset
 }
 public extension TelephoneNumber {
-	private func addToByteArray(builder : FlatBufferBuilder) -> Offset {
+	private func addToByteArray(_ builder : FlatBufferBuilder) -> Offset {
 		if builder.config.uniqueTables {
 			if let myOffset = builder.cache[ObjectIdentifier(self)] {
 				return myOffset
@@ -1881,10 +1881,10 @@ extension TelephoneNumber {
 			properties.append("\"number\":\"\(number)\"")
 		}
 		
-		return "{\(properties.joinWithSeparator(","))}"
+		return "{\(properties.joined(separator: ","))}"
 	}
 
-	public static func fromJSON(dict : NSDictionary) -> TelephoneNumber {
+	public static func fromJSON(_ dict : NSDictionary) -> TelephoneNumber {
 		let result = TelephoneNumber()
 		if let number = dict["number"] as? NSString {
 			result.number = number as String
@@ -1897,7 +1897,7 @@ extension TelephoneNumber {
 	}
 }
 public protocol Address{
-	static func fromJSON(dict : NSDictionary) -> Self
+	static func fromJSON(_ dict : NSDictionary) -> Self
 	func toJSON() -> String
 	func jsonTypeName() -> String
 }
@@ -1915,7 +1915,7 @@ extension WebAddress.Fast : Address_Fast {}
 extension TelephoneNumber : Address {}
 extension TelephoneNumber.LazyAccess : Address_LazyAccess {}
 extension TelephoneNumber.Fast : Address_Fast {}
-private func create_Address(reader : FlatBufferReader, propertyIndex : Int, objectOffset : Offset?) -> Address? {
+private func create_Address(_ reader : FlatBufferReader, propertyIndex : Int, objectOffset : Offset?) -> Address? {
 	guard let objectOffset = objectOffset else {
 		return nil
 	}
@@ -1931,7 +1931,7 @@ private func create_Address(reader : FlatBufferReader, propertyIndex : Int, obje
 	default : return nil
 	}
 }
-private func fromJSON_Address(dict : NSDictionary, typeName : String) -> Address? {
+private func fromJSON_Address(_ dict : NSDictionary, typeName : String) -> Address? {
 	switch typeName {
 	case "PostalAddress" : return PostalAddress.fromJSON(dict)
 	case "EmailAddress" : return EmailAddress.fromJSON(dict)
@@ -1940,7 +1940,7 @@ private func fromJSON_Address(dict : NSDictionary, typeName : String) -> Address
 	default : return nil
 	}
 }
-private func create_Address_LazyAccess(reader : FlatBufferReader, propertyIndex : Int, objectOffset : Offset?) -> Address_LazyAccess? {
+private func create_Address_LazyAccess(_ reader : FlatBufferReader, propertyIndex : Int, objectOffset : Offset?) -> Address_LazyAccess? {
 	guard let objectOffset = objectOffset else {
 		return nil
 	}
@@ -1956,7 +1956,7 @@ private func create_Address_LazyAccess(reader : FlatBufferReader, propertyIndex 
 	default : return nil
 	}
 }
-private func create_Address_Fast(buffer : UnsafePointer<UInt8>, propertyIndex : Int, objectOffset : Offset?) -> Address_Fast? {
+private func create_Address_Fast(_ buffer : UnsafePointer<UInt8>, propertyIndex : Int, objectOffset : Offset?) -> Address_Fast? {
 	guard let objectOffset = objectOffset else {
 		return nil
 	}
@@ -1972,7 +1972,7 @@ private func create_Address_Fast(buffer : UnsafePointer<UInt8>, propertyIndex : 
 	default : return nil
 	}
 }
-private func unionCase_Address(union : Address?) -> Int8 {
+private func unionCase_Address(_ union : Address?) -> Int8 {
 	switch union {
 	case is PostalAddress : return 1
 	case is EmailAddress : return 2
@@ -1981,7 +1981,7 @@ private func unionCase_Address(union : Address?) -> Int8 {
 	default : return 0
 	}
 }
-private func addToByteArray_Address(builder : FlatBufferBuilder, union : Address?) -> Offset {
+private func addToByteArray_Address(_ builder : FlatBufferBuilder, union : Address?) -> Offset {
 	switch union {
 	case let u as PostalAddress : return u.addToByteArray(builder)
 	case let u as EmailAddress : return u.addToByteArray(builder)
@@ -1990,7 +1990,7 @@ private func addToByteArray_Address(builder : FlatBufferBuilder, union : Address
 	default : return 0
 	}
 }
-private func performLateBindings(builder : FlatBufferBuilder) {
+private func performLateBindings(_ builder : FlatBufferBuilder) {
 	for binding in builder.deferedBindings {
 		switch binding.object {
 		case let object as ContactList: try! builder.replaceOffset(object.addToByteArray(builder), atCursor: binding.cursor)

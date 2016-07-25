@@ -23,7 +23,7 @@ class FlatBuffersGeneratedAPITest: XCTestCase {
         let list = ContactList()
         let p1 = Contact()
         p1.name = "Max"
-        p1.gender = .Male
+        p1.gender = .male
         p1.birthday = Date()
         p1.birthday?.day = 12
         p1.birthday?.month = 6
@@ -65,7 +65,7 @@ class FlatBuffersGeneratedAPITest: XCTestCase {
         let list = ContactList()
         let p1 = Contact()
         p1.name = "Max"
-        p1.gender = .Male
+        p1.gender = .male
         p1.birthday = Date()
         p1.birthday?.day = 12
         p1.birthday?.month = 6
@@ -118,7 +118,7 @@ class FlatBuffersGeneratedAPITest: XCTestCase {
         let list = ContactList()
         let p1 = Contact()
         p1.name = "Max"
-        p1.gender = .Male
+        p1.gender = .male
         p1.birthday = Date()
         p1.birthday?.day = 12
         p1.birthday?.month = 6
@@ -145,7 +145,7 @@ class FlatBuffersGeneratedAPITest: XCTestCase {
         let list = ContactList()
         let p1 = Contact()
         p1.name = "Max"
-        p1.gender = .Male
+        p1.gender = .male
         p1.birthday = Date()
         p1.birthday?.day = 12
         p1.birthday?.month = 6
@@ -174,8 +174,8 @@ class FlatBuffersGeneratedAPITest: XCTestCase {
         let list = ContactList()
         let p1 = Contact()
         p1.name = "Max"
-        p1.gender = .Male
-        p1.moods = [Mood.Angry, Mood.Funny]
+        p1.gender = .male
+        p1.moods = [Mood.angry, Mood.funny]
         p1.previousLocations = [GeoLocation(latitude: 1.5, longitude: 2.5, elevation: 3.5, s: S1(i:2))]
         
         list.entries = [p1]
@@ -197,8 +197,8 @@ class FlatBuffersGeneratedAPITest: XCTestCase {
         let list = ContactList()
         let p1 = Contact()
         p1.name = "Max"
-        p1.gender = .Male
-        p1.moods = [Mood.Angry, Mood.Funny]
+        p1.gender = .male
+        p1.moods = [Mood.angry, Mood.funny]
         p1.previousLocations = [GeoLocation(latitude: 1.5, longitude: 2.5, elevation: 3.5, s: S1(i:2))]
         
         list.entries = [p1]
@@ -221,8 +221,8 @@ class FlatBuffersGeneratedAPITest: XCTestCase {
         let list = ContactList()
         let p1 = Contact()
         p1.name = "Max"
-        p1.gender = .Male
-        p1.moods = [Mood.Angry, Mood.Funny]
+        p1.gender = .male
+        p1.moods = [Mood.angry, Mood.funny]
         p1.currentLoccation = GeoLocation(latitude: 3.5, longitude: 3.5, elevation: 3.5, s: S1(i:8))
         p1.previousLocations = [GeoLocation(latitude: 1.5, longitude: 2.5, elevation: 3.5, s: S1(i:2))]
         
@@ -232,7 +232,7 @@ class FlatBuffersGeneratedAPITest: XCTestCase {
         list.entries = [p1]
         
         let jsonString = list.toJSON()
-        let json = try!NSJSONSerialization.JSONObjectWithData(jsonString.dataUsingEncoding(NSUTF8StringEncoding)!, options: []) as! NSDictionary
+        let json = try!JSONSerialization.jsonObject(with: jsonString.data(using: String.Encoding.utf8)!, options: []) as! NSDictionary
         
         let newList  = ContactList.fromJSON(json)
         let newJsonString = newList.toJSON()

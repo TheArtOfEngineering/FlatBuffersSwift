@@ -7,8 +7,8 @@
 //
 import Foundation
 
-public enum FlatBufferReaderError : ErrorType {
-    case CanOnlySetNonDefaultProperty
+public enum FlatBufferReaderError : ErrorProtocol {
+    case canOnlySetNonDefaultProperty
 }
 
 public final class FlatBufferReader {
@@ -18,11 +18,11 @@ public final class FlatBufferReader {
     
     public var config : BinaryReadConfig
     
-    var buffer : UnsafeMutablePointer<UInt8> = nil
+    var buffer = UnsafeMutablePointer<UInt8>(nil)
     public var objectPool : [Offset : AnyObject] = [:]
     
-    func fromByteArray<T : Scalar>(position : Int) -> T{
-        return UnsafePointer<T>(buffer.advancedBy(position)).memory
+    func fromByteArray<T : Scalar>(_ position : Int) -> T{
+        return UnsafePointer<T>(buffer!.advanced(by: position)).pointee
     }
     
     private var length : Int
@@ -53,7 +53,7 @@ public final class FlatBufferReader {
         return offset
     }
     
-    public func get<T : Scalar>(objectOffset : Offset, propertyIndex : Int, defaultValue : T) -> T{
+    public func get<T : Scalar>(_ objectOffset : Offset, propertyIndex : Int, defaultValue : T) -> T{
         let propertyOffset = getPropertyOffset(objectOffset, propertyIndex: propertyIndex)
         if propertyOffset == 0 {
             return defaultValue
@@ -62,7 +62,7 @@ public final class FlatBufferReader {
         return fromByteArray(position)
     }
     
-    public func get<T : Scalar>(objectOffset : Offset, propertyIndex : Int) -> T?{
+    public func get<T : Scalar>(_ objectOffset : Offset, propertyIndex : Int) -> T?{
         let propertyOffset = getPropertyOffset(objectOffset, propertyIndex: propertyIndex)
         if propertyOffset == 0 {
             return nil
@@ -71,24 +71,24 @@ public final class FlatBufferReader {
         return fromByteArray(position) as T
     }
     
-    public func set<T : Scalar>(objectOffset : Offset, propertyIndex : Int, value : T) throws {
+    public func set<T : Scalar>(_ objectOffset : Offset, propertyIndex : Int, value : T) throws {
         let propertyOffset = getPropertyOffset(objectOffset, propertyIndex: propertyIndex)
         if propertyOffset == 0 {
-            throw FlatBufferReaderError.CanOnlySetNonDefaultProperty
+            throw FlatBufferReaderError.canOnlySetNonDefaultProperty
         }
         var v = value
         let position = Int(objectOffset + propertyOffset)
         let c = strideofValue(v)
         withUnsafePointer(&v){
-            buffer.advancedBy(position).assignFrom(UnsafeMutablePointer<UInt8>($0), count: c)
+            buffer!.advanced(by: position).assignFrom(UnsafeMutablePointer<UInt8>($0), count: c)
         }
     }
     
-    public func hasProperty(objectOffset : Offset, propertyIndex : Int) -> Bool {
+    public func hasProperty(_ objectOffset : Offset, propertyIndex : Int) -> Bool {
         return getPropertyOffset(objectOffset, propertyIndex: propertyIndex) != 0
     }
     
-    public func getOffset(objectOffset : Offset, propertyIndex : Int) -> Offset?{
+    public func getOffset(_ objectOffset : Offset, propertyIndex : Int) -> Offset?{
         let propertyOffset = getPropertyOffset(objectOffset, propertyIndex: propertyIndex)
         if propertyOffset == 0 {
             return nil
@@ -105,7 +105,7 @@ public final class FlatBufferReader {
     
     var stringCache : [Int32:String] = [:]
     
-    public func getString(stringOffset : Offset?) -> String? {
+    public func getString(_ stringOffset : Offset?) -> String? {
         guard let stringOffset = stringOffset else {
             return nil
         }
@@ -118,8 +118,8 @@ public final class FlatBufferReader {
         let stringPosition = Int(stringOffset)
         let stringLength : Int32 = fromByteArray(stringPosition)
         
-        let pointer = UnsafeMutablePointer<UInt8>(buffer).advancedBy((stringPosition + strideof(Int32)))
-        let result = String.init(bytesNoCopy: pointer, length: Int(stringLength), encoding: NSUTF8StringEncoding, freeWhenDone: false)
+        let pointer = UnsafeMutablePointer<UInt8>(buffer!).advanced(by: (stringPosition + strideof(Int32.self)))
+        let result = String.init(bytesNoCopy: pointer, length: Int(stringLength), encoding: String.Encoding.utf8, freeWhenDone: false)
         
         if config.uniqueStrings {
             stringCache[stringOffset] = result
@@ -127,17 +127,17 @@ public final class FlatBufferReader {
         return result
     }
     
-    public func getStringBuffer(stringOffset : Offset?) -> UnsafeBufferPointer<UInt8>? {
+    public func getStringBuffer(_ stringOffset : Offset?) -> UnsafeBufferPointer<UInt8>? {
         guard let stringOffset = stringOffset else {
             return nil
         }
         let stringPosition = Int(stringOffset)
         let stringLength : Int32 = fromByteArray(stringPosition)
-        let pointer = UnsafePointer<UInt8>(buffer).advancedBy((stringPosition + strideof(Int32)))
+        let pointer = UnsafePointer<UInt8>(buffer!).advanced(by: (stringPosition + strideof(Int32.self)))
         return UnsafeBufferPointer<UInt8>.init(start: pointer, count: Int(stringLength))
     }
     
-    public func getVectorLength(vectorOffset : Offset?) -> Int {
+    public func getVectorLength(_ vectorOffset : Offset?) -> Int {
         guard let vectorOffset = vectorOffset else {
             return 0
         }
@@ -146,22 +146,22 @@ public final class FlatBufferReader {
         return Int(length2)
     }
     
-    public func getVectorScalarElement<T : Scalar>(vectorOffset : Offset, index : Int) -> T {
-        let valueStartPosition = Int(vectorOffset + strideof(Int32) + (index * strideof(T)))
-        return UnsafePointer<T>(UnsafePointer<UInt8>(buffer).advancedBy(valueStartPosition)).memory
+    public func getVectorScalarElement<T : Scalar>(_ vectorOffset : Offset, index : Int) -> T {
+        let valueStartPosition = Int(vectorOffset + strideof(Int32.self) + (index * strideof(T.self)))
+        return UnsafePointer<T>(UnsafePointer<UInt8>(buffer!).advanced(by: valueStartPosition)).pointee
     }
     
-    public func setVectorScalarElement<T : Scalar>(vectorOffset : Offset, index : Int, value : T) {
-        let valueStartPosition = Int(vectorOffset + strideof(Int32) + (index * strideof(T)))
+    public func setVectorScalarElement<T : Scalar>(_ vectorOffset : Offset, index : Int, value : T) {
+        let valueStartPosition = Int(vectorOffset + strideof(Int32.self) + (index * strideof(T.self)))
         var v = value
         let c = strideofValue(v)
         withUnsafePointer(&v){
-            buffer.advancedBy(valueStartPosition).assignFrom(UnsafeMutablePointer<UInt8>($0), count: c)
+            buffer!.advanced(by: valueStartPosition).assignFrom(UnsafeMutablePointer<UInt8>($0), count: c)
         }
     }
     
-    public func getVectorOffsetElement(vectorOffset : Offset, index : Int) -> Offset? {
-        let valueStartPosition = Int(vectorOffset + strideof(Int32) + (index * strideof(Int32)))
+    public func getVectorOffsetElement(_ vectorOffset : Offset, index : Int) -> Offset? {
+        let valueStartPosition = Int(vectorOffset + strideof(Int32.self) + (index * strideof(Int32.self)))
         let localOffset : Int32 = fromByteArray(valueStartPosition)
         if(localOffset == 0){
             return nil
@@ -169,7 +169,7 @@ public final class FlatBufferReader {
         return localOffset + valueStartPosition
     }
     
-    private func getPropertyOffset(objectOffset : Offset, propertyIndex : Int)->Int {
+    private func getPropertyOffset(_ objectOffset : Offset, propertyIndex : Int)->Int {
         let offset = Int(objectOffset)
         let localOffset : Int32 = fromByteArray(offset)
         let vTableOffset : Int = offset - Int(localOffset)
@@ -188,12 +188,12 @@ public extension FlatBufferReader {
     public func reset ()
     {
         buffer = nil
-        objectPool.removeAll(keepCapacity: true)
-        stringCache.removeAll(keepCapacity: true)
+        objectPool.removeAll(keepingCapacity: true)
+        stringCache.removeAll(keepingCapacity: true)
         length = 0
     }
     
-    public static func create(buffer : [UInt8], config: BinaryReadConfig) -> FlatBufferReader {
+    public static func create(_ buffer : [UInt8], config: BinaryReadConfig) -> FlatBufferReader {
         objc_sync_enter(instancePool)
         defer { objc_sync_exit(instancePool) }
 
@@ -211,7 +211,7 @@ public extension FlatBufferReader {
         return FlatBufferReader(buffer: buffer, config: config)
     }
     
-    public static func create(bytes : UnsafeBufferPointer<UInt8>, config: BinaryReadConfig) -> FlatBufferReader {
+    public static func create(_ bytes : UnsafeBufferPointer<UInt8>, config: BinaryReadConfig) -> FlatBufferReader {
         objc_sync_enter(instancePool)
         defer { objc_sync_exit(instancePool) }
 
@@ -229,7 +229,7 @@ public extension FlatBufferReader {
         return FlatBufferReader(bytes: bytes, config: config)
     }
     
-    public static func create(bytes : UnsafeMutablePointer<UInt8>, count : Int, config: BinaryReadConfig) -> FlatBufferReader {
+    public static func create(_ bytes : UnsafeMutablePointer<UInt8>, count : Int, config: BinaryReadConfig) -> FlatBufferReader {
         objc_sync_enter(instancePool)
         defer { objc_sync_exit(instancePool) }
 
@@ -247,7 +247,7 @@ public extension FlatBufferReader {
         return FlatBufferReader(bytes: bytes, count: count, config: config)
     }
 
-    public static func reuse(reader : FlatBufferReader) {
+    public static func reuse(_ reader : FlatBufferReader) {
         objc_sync_enter(instancePool)
         defer { objc_sync_exit(instancePool) }
 
@@ -264,11 +264,11 @@ public extension FlatBufferReader {
 
 public final class FlatBufferReaderFast {
 
-    public static func fromByteArray<T : Scalar>(buffer : UnsafePointer<UInt8>, _ position : Int) -> T{
-        return UnsafePointer<T>(buffer.advancedBy(position)).memory
+    public static func fromByteArray<T : Scalar>(_ buffer : UnsafePointer<UInt8>, _ position : Int) -> T{
+        return UnsafePointer<T>(buffer.advanced(by: position)).pointee
     }
 
-    public static func getPropertyOffset(buffer : UnsafePointer<UInt8>, _ objectOffset : Offset, propertyIndex : Int)->Int {
+    public static func getPropertyOffset(_ buffer : UnsafePointer<UInt8>, _ objectOffset : Offset, propertyIndex : Int)->Int {
         let offset = Int(objectOffset)
         let localOffset : Int32 = fromByteArray(buffer, offset)
         let vTableOffset : Int = offset - Int(localOffset)
@@ -282,7 +282,7 @@ public final class FlatBufferReaderFast {
         return Int(propertyOffset)
     }
 
-    public static func getOffset(buffer : UnsafePointer<UInt8>, _ objectOffset : Offset, propertyIndex : Int) -> Offset?{
+    public static func getOffset(_ buffer : UnsafePointer<UInt8>, _ objectOffset : Offset, propertyIndex : Int) -> Offset?{
         let propertyOffset = getPropertyOffset(buffer, objectOffset, propertyIndex: propertyIndex)
         if propertyOffset == 0 {
             return nil
@@ -297,7 +297,7 @@ public final class FlatBufferReaderFast {
         return offset
     }
 
-    public static func getVectorLength(buffer : UnsafePointer<UInt8>, _ vectorOffset : Offset?) -> Int {
+    public static func getVectorLength(_ buffer : UnsafePointer<UInt8>, _ vectorOffset : Offset?) -> Int {
         guard let vectorOffset = vectorOffset else {
             return 0
         }
@@ -306,8 +306,8 @@ public final class FlatBufferReaderFast {
         return Int(length2)
     }
 
-    public static func getVectorOffsetElement(buffer : UnsafePointer<UInt8>, _ vectorOffset : Offset, index : Int) -> Offset? {
-        let valueStartPosition = Int(vectorOffset + strideof(Int32) + (index * strideof(Int32)))
+    public static func getVectorOffsetElement(_ buffer : UnsafePointer<UInt8>, _ vectorOffset : Offset, index : Int) -> Offset? {
+        let valueStartPosition = Int(vectorOffset + strideof(Int32.self) + (index * strideof(Int32.self)))
         let localOffset : Int32 = fromByteArray(buffer, valueStartPosition)
         if(localOffset == 0){
             return nil
@@ -315,12 +315,12 @@ public final class FlatBufferReaderFast {
         return localOffset + valueStartPosition
     }
 
-    public static func getVectorScalarElement<T : Scalar>(buffer : UnsafePointer<UInt8>, _ vectorOffset : Offset, index : Int) -> T {
-        let valueStartPosition = Int(vectorOffset + strideof(Int32) + (index * strideof(T)))
-        return UnsafePointer<T>(UnsafePointer<UInt8>(buffer).advancedBy(valueStartPosition)).memory
+    public static func getVectorScalarElement<T : Scalar>(_ buffer : UnsafePointer<UInt8>, _ vectorOffset : Offset, index : Int) -> T {
+        let valueStartPosition = Int(vectorOffset + strideof(Int32.self) + (index * strideof(T.self)))
+        return UnsafePointer<T>(UnsafePointer<UInt8>(buffer).advanced(by: valueStartPosition)).pointee
     }
 
-    public static func get<T : Scalar>(buffer : UnsafePointer<UInt8>, _ objectOffset : Offset, propertyIndex : Int, defaultValue : T) -> T{
+    public static func get<T : Scalar>(_ buffer : UnsafePointer<UInt8>, _ objectOffset : Offset, propertyIndex : Int, defaultValue : T) -> T{
         let propertyOffset = getPropertyOffset(buffer, objectOffset, propertyIndex: propertyIndex)
         if propertyOffset == 0 {
             return defaultValue
@@ -329,7 +329,7 @@ public final class FlatBufferReaderFast {
         return fromByteArray(buffer, position)
     }
 
-    public static func get<T : Scalar>(buffer : UnsafePointer<UInt8>, _ objectOffset : Offset, propertyIndex : Int) -> T?{
+    public static func get<T : Scalar>(_ buffer : UnsafePointer<UInt8>, _ objectOffset : Offset, propertyIndex : Int) -> T?{
         let propertyOffset = getPropertyOffset(buffer, objectOffset, propertyIndex: propertyIndex)
         if propertyOffset == 0 {
             return nil
@@ -338,48 +338,48 @@ public final class FlatBufferReaderFast {
         return fromByteArray(buffer, position) as T
     }
 
-    public static func getStringBuffer(buffer : UnsafePointer<UInt8>, _ stringOffset : Offset?) -> UnsafeBufferPointer<UInt8>? {
+    public static func getStringBuffer(_ buffer : UnsafePointer<UInt8>, _ stringOffset : Offset?) -> UnsafeBufferPointer<UInt8>? {
         guard let stringOffset = stringOffset else {
             return nil
         }
         let stringPosition = Int(stringOffset)
         let stringLength : Int32 = fromByteArray(buffer, stringPosition)
-        let pointer = UnsafePointer<UInt8>(buffer).advancedBy((stringPosition + strideof(Int32)))
+        let pointer = UnsafePointer<UInt8>(buffer).advanced(by: (stringPosition + strideof(Int32.self)))
         return UnsafeBufferPointer<UInt8>.init(start: pointer, count: Int(stringLength))
     }
 
-    public static func getString(buffer : UnsafePointer<UInt8>, _ stringOffset : Offset?) -> String? {
+    public static func getString(_ buffer : UnsafePointer<UInt8>, _ stringOffset : Offset?) -> String? {
         guard let stringOffset = stringOffset else {
             return nil
         }
         let stringPosition = Int(stringOffset)
         let stringLength : Int32 = fromByteArray(buffer, stringPosition)
 
-        let pointer = UnsafeMutablePointer<UInt8>(buffer).advancedBy((stringPosition + strideof(Int32)))
-        let result = String.init(bytesNoCopy: pointer, length: Int(stringLength), encoding: NSUTF8StringEncoding, freeWhenDone: false)
+        let pointer = UnsafeMutablePointer<UInt8>(buffer).advanced(by: (stringPosition + strideof(Int32.self)))
+        let result = String.init(bytesNoCopy: pointer, length: Int(stringLength), encoding: String.Encoding.utf8, freeWhenDone: false)
 
         return result
     }
 
-    public static func set<T : Scalar>(buffer : UnsafeMutablePointer<UInt8>, _ objectOffset : Offset, propertyIndex : Int, value : T) throws {
+    public static func set<T : Scalar>(_ buffer : UnsafeMutablePointer<UInt8>, _ objectOffset : Offset, propertyIndex : Int, value : T) throws {
         let propertyOffset = getPropertyOffset(buffer, objectOffset, propertyIndex: propertyIndex)
         if propertyOffset == 0 {
-            throw FlatBufferReaderError.CanOnlySetNonDefaultProperty
+            throw FlatBufferReaderError.canOnlySetNonDefaultProperty
         }
         var v = value
         let position = Int(objectOffset + propertyOffset)
         let c = strideofValue(v)
         withUnsafePointer(&v){
-            buffer.advancedBy(position).assignFrom(UnsafeMutablePointer<UInt8>($0), count: c)
+            buffer.advanced(by: position).assignFrom(UnsafeMutablePointer<UInt8>($0), count: c)
         }
     }
 
-    public static func setVectorScalarElement<T : Scalar>(buffer : UnsafeMutablePointer<UInt8>, _ vectorOffset : Offset, index : Int, value : T) {
-        let valueStartPosition = Int(vectorOffset + strideof(Int32) + (index * strideof(T)))
+    public static func setVectorScalarElement<T : Scalar>(_ buffer : UnsafeMutablePointer<UInt8>, _ vectorOffset : Offset, index : Int, value : T) {
+        let valueStartPosition = Int(vectorOffset + strideof(Int32.self) + (index * strideof(T.self)))
         var v = value
         let c = strideofValue(v)
         withUnsafePointer(&v){
-            buffer.advancedBy(valueStartPosition).assignFrom(UnsafeMutablePointer<UInt8>($0), count: c)
+            buffer.advanced(by: valueStartPosition).assignFrom(UnsafeMutablePointer<UInt8>($0), count: c)
         }
     }
 }
@@ -393,17 +393,19 @@ public final class FlatBufferFileReader {
     
     public var config : BinaryReadConfig
     
-    let fileHandle : NSFileHandle
+    let fileHandle : FileHandle
     public var objectPool : [Offset : AnyObject] = [:]
     
-    func fromByteArray<T : Scalar>(position : Int) -> T{
-        fileHandle.seekToFileOffset(UInt64(position))
-        return UnsafePointer<T>(fileHandle.readDataOfLength(strideof(T)).bytes).memory
+    func fromByteArray<T : Scalar>(_ position : Int) -> T {
+        fileHandle.seek(toFileOffset: UInt64(position))
+        return fileHandle.readData(ofLength: strideof(T.self)).withUnsafeBytes { p in
+            return p.pointee
+        }
     }
     
     public init(filePath : String, config: BinaryReadConfig){
         self.config = config
-        fileHandle = NSFileHandle.init(forUpdatingAtPath: filePath)!
+        fileHandle = FileHandle.init(forUpdatingAtPath: filePath)!
     }
     
     public var rootObjectOffset : Offset {
@@ -411,7 +413,7 @@ public final class FlatBufferFileReader {
         return offset
     }
     
-    public func get<T : Scalar>(objectOffset : Offset, propertyIndex : Int, defaultValue : T) -> T{
+    public func get<T : Scalar>(_ objectOffset : Offset, propertyIndex : Int, defaultValue : T) -> T{
         let propertyOffset = getPropertyOffset(objectOffset, propertyIndex: propertyIndex)
         if propertyOffset == 0 {
             return defaultValue
@@ -420,7 +422,7 @@ public final class FlatBufferFileReader {
         return fromByteArray(position)
     }
     
-    public func get<T : Scalar>(objectOffset : Offset, propertyIndex : Int) -> T?{
+    public func get<T : Scalar>(_ objectOffset : Offset, propertyIndex : Int) -> T?{
         let propertyOffset = getPropertyOffset(objectOffset, propertyIndex: propertyIndex)
         if propertyOffset == 0 {
             return nil
@@ -429,11 +431,11 @@ public final class FlatBufferFileReader {
         return fromByteArray(position) as T
     }
     
-    public func hasProperty(objectOffset : Offset, propertyIndex : Int) -> Bool {
+    public func hasProperty(_ objectOffset : Offset, propertyIndex : Int) -> Bool {
         return getPropertyOffset(objectOffset, propertyIndex: propertyIndex) != 0
     }
     
-    public func getOffset(objectOffset : Offset, propertyIndex : Int) -> Offset?{
+    public func getOffset(_ objectOffset : Offset, propertyIndex : Int) -> Offset?{
         let propertyOffset = getPropertyOffset(objectOffset, propertyIndex: propertyIndex)
         if propertyOffset == 0 {
             return nil
@@ -450,7 +452,7 @@ public final class FlatBufferFileReader {
     
     var stringCache : [Int32:String] = [:]
     
-    public func getString(stringOffset : Offset?) -> String? {
+    public func getString(_ stringOffset : Offset?) -> String? {
         guard let stringOffset = stringOffset else {
             return nil
         }
@@ -463,9 +465,11 @@ public final class FlatBufferFileReader {
         let stringPosition = Int(stringOffset)
         let stringLength : Int32 = fromByteArray(stringPosition)
         
-        fileHandle.seekToFileOffset(UInt64(stringPosition + strideof(Int32)))
-        let pointer = UnsafeMutablePointer<UInt8>(fileHandle.readDataOfLength(Int(stringLength)).bytes)
-        let result = String.init(bytesNoCopy: pointer, length: Int(stringLength), encoding: NSUTF8StringEncoding, freeWhenDone: false)
+        fileHandle.seek(toFileOffset: UInt64(stringPosition + strideof(Int32.self)))
+        let pointer = fileHandle.readData(ofLength: Int(stringLength)).withUnsafeBytes { (p: UnsafePointer<UInt8>) in
+            return UnsafeMutablePointer<UInt8>(p)
+        }
+        let result = String.init(bytesNoCopy: pointer, length: Int(stringLength), encoding: String.Encoding.utf8, freeWhenDone: false)
         
         if config.uniqueStrings {
             stringCache[stringOffset] = result
@@ -473,19 +477,21 @@ public final class FlatBufferFileReader {
         return result
     }
     
-    public func getStringBuffer(stringOffset : Offset?) -> UnsafeBufferPointer<UInt8>? {
+    public func getStringBuffer(_ stringOffset : Offset?) -> UnsafeBufferPointer<UInt8>? {
         guard let stringOffset = stringOffset else {
             return nil
         }
         let stringPosition = Int(stringOffset)
         let stringLength : Int32 = fromByteArray(stringPosition)
         
-        fileHandle.seekToFileOffset(UInt64(stringPosition + strideof(Int32)))
-        let pointer = UnsafeMutablePointer<UInt8>(fileHandle.readDataOfLength(Int(stringLength)).bytes)
-        return UnsafeBufferPointer<UInt8>.init(start: pointer, count: Int(stringLength))
+        fileHandle.seek(toFileOffset: UInt64(stringPosition + strideof(Int32.self)))
+        let pointer = fileHandle.readData(ofLength: Int(stringLength)).withUnsafeBytes { (p: UnsafePointer<UInt8>) in
+            return UnsafeMutablePointer<UInt8>(p)
+        }
+        return UnsafeBufferPointer<UInt8>(start: pointer, count: Int(stringLength))
     }
     
-    public func getVectorLength(vectorOffset : Offset?) -> Int {
+    public func getVectorLength(_ vectorOffset : Offset?) -> Int {
         guard let vectorOffset = vectorOffset else {
             return 0
         }
@@ -494,15 +500,17 @@ public final class FlatBufferFileReader {
         return Int(length2)
     }
     
-    public func getVectorScalarElement<T : Scalar>(vectorOffset : Offset, index : Int) -> T {
-        let valueStartPosition = Int(vectorOffset + strideof(Int32) + (index * strideof(T)))
-        fileHandle.seekToFileOffset(UInt64(valueStartPosition))
+    public func getVectorScalarElement<T : Scalar>(_ vectorOffset : Offset, index : Int) -> T {
+        let valueStartPosition = Int(vectorOffset + strideof(Int32.self) + (index * strideof(T.self)))
+        fileHandle.seek(toFileOffset: UInt64(valueStartPosition))
         
-        return UnsafePointer<T>(fileHandle.readDataOfLength(strideof(T)).bytes).memory
+        return fileHandle.readData(ofLength: strideof(T.self)).withUnsafeBytes { p in
+            return p.pointee
+        }
     }
     
-    public func getVectorOffsetElement(vectorOffset : Offset, index : Int) -> Offset? {
-        let valueStartPosition = Int(vectorOffset + strideof(Int32) + (index * strideof(Int32)))
+    public func getVectorOffsetElement(_ vectorOffset : Offset, index : Int) -> Offset? {
+        let valueStartPosition = Int(vectorOffset + strideof(Int32.self) + (index * strideof(Int32.self)))
         let localOffset : Int32 = fromByteArray(valueStartPosition)
         if(localOffset == 0){
             return nil
@@ -510,7 +518,7 @@ public final class FlatBufferFileReader {
         return localOffset + valueStartPosition
     }
     
-    private func getPropertyOffset(objectOffset : Offset, propertyIndex : Int)->Int {
+    private func getPropertyOffset(_ objectOffset : Offset, propertyIndex : Int)->Int {
         let offset = Int(objectOffset)
         let localOffset : Int32 = fromByteArray(offset)
         let vTableOffset : Int = offset - Int(localOffset)

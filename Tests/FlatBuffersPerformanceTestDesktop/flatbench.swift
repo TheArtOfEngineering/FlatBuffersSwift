@@ -18,7 +18,7 @@ private let readConfiguration = BinaryReadConfig(uniqueStrings: false, uniqueTab
 private let buildConfiguration = BinaryBuildConfig(initialCapacity: bufsize, uniqueStrings: false, uniqueTables: false, uniqueVTables: false, forceDefaults: false, fullMemoryAlignment: false)
 
 
-private func flatencode(builder : FlatBufferBuilder)
+private func flatencode(_ builder : FlatBufferBuilder)
 {
     let veclen = 3
     var foobars = ContiguousArray<FooBar?>.init(count: veclen, repeatedValue:nil)
@@ -33,25 +33,25 @@ private func flatencode(builder : FlatBufferBuilder)
     }
     
     let location : StaticString = "http://google.com/flatbuffers/"
-    let foobarcontainer = FooBarContainer(list: foobars, initialized: true, fruit: Enum.Bananas, location: location)
+    let foobarcontainer = FooBarContainer(list: foobars, initialized: true, fruit: Enum.bananas, location: location)
     
     assert(builder._dataCount <= bufsize)
     foobarcontainer.toFlatBufferBuilder(builder)
 }
 
-private func flatdecode(reader : FlatBufferReader) -> FooBarContainer
+private func flatdecode(_ reader : FlatBufferReader) -> FooBarContainer
 {
     return FooBarContainer.fromFlatBufferReader(reader)
 }
 
-private func flatdecodelazy(inout buf:[UInt8], _ bufsize:Int) -> FooBarContainer.LazyAccess
+private func flatdecodelazy(_ buf:inout [UInt8], _ bufsize:Int) -> FooBarContainer.LazyAccess
 {
     return buf.withUnsafeBufferPointer {
         FooBarContainer.LazyAccess(data:($0), config: readConfiguration)
     }
 }
 
-private func flatuse(foobarcontainer : FooBarContainer, start : Int) -> Int
+private func flatuse(_ foobarcontainer : FooBarContainer, start : Int) -> Int
 {
     var sum:Int = Int(start)
     sum = sum + Int(foobarcontainer.locationBuffer!.count)
@@ -80,7 +80,7 @@ private func flatuse(foobarcontainer : FooBarContainer, start : Int) -> Int
 }
 
 // Just a copy-paste as we are lacking a protocol so we could write a generic implementation
-private func flatuselazy(foobarcontainer : FooBarContainer.LazyAccess, start : Int) -> Int
+private func flatuselazy(_ foobarcontainer : FooBarContainer.LazyAccess, start : Int) -> Int
 {
     var sum:Int = start
     sum = sum + Int(foobarcontainer.location!.utf8.count) // characters.count is quite expensive and misleading here
@@ -108,7 +108,7 @@ private func flatuselazy(foobarcontainer : FooBarContainer.LazyAccess, start : I
     return sum
 }
 
-private func flatDecodeDirect(buffer : UnsafePointer<UInt8>, start : Int) -> Int{
+private func flatDecodeDirect(_ buffer : UnsafePointer<UInt8>, start : Int) -> Int{
     
     let fooBarContainerOffset = getFooBarContainerRootOffset(buffer)
     
@@ -144,7 +144,7 @@ private func flatDecodeDirect(buffer : UnsafePointer<UInt8>, start : Int) -> Int
     return sum
 }
 
-private func flatuseStruct(buffer : UnsafePointer<UInt8>, start : Int) -> Int
+private func flatuseStruct(_ buffer : UnsafePointer<UInt8>, start : Int) -> Int
 {
     var sum:Int = start
     
@@ -181,12 +181,12 @@ private func flatuseStruct(buffer : UnsafePointer<UInt8>, start : Int) -> Int
 
 // convenience formatter
 extension Double {
-    func string(fractionDigits:Int) -> String {
-        let formatter = NSNumberFormatter()
+    func string(_ fractionDigits:Int) -> String {
+        let formatter = NumberFormatter()
         formatter.minimumFractionDigits = fractionDigits
         formatter.maximumFractionDigits = fractionDigits
         formatter.minimumIntegerDigits = 1
-        return formatter.stringFromNumber(self) ?? "\(self)"
+        return formatter.string(from: self) ?? "\(self)"
     }
 }
 
@@ -197,7 +197,7 @@ enum BenchmarkRunType {
     case structDecode     /// stream processing
 }
 
-private func runbench(runType: BenchmarkRunType) -> (Int, Int)
+private func runbench(_ runType: BenchmarkRunType) -> (Int, Int)
 {
     var encode = 0.0
     var decode = 0.0
@@ -209,7 +209,7 @@ private func runbench(runType: BenchmarkRunType) -> (Int, Int)
     var rawResults = ContiguousArray<UnsafePointer<UInt8>>.init(count: Int(iterations), repeatedValue: nil)
     let builder = FlatBufferBuilder.create(buildConfiguration)
     var reader : FlatBufferReader? = nil
-    var buf = [UInt8](count: bufsize, repeatedValue: 0)
+    var buf = [UInt8](repeating: 0, count: bufsize)
     
     results.reserveCapacity(Int(iterations))
     lazyResults.reserveCapacity(Int(iterations))
@@ -308,7 +308,7 @@ private func runbench(runType: BenchmarkRunType) -> (Int, Int)
              FlatBufferReader.reuse(reader!)
             }
         case .lazyDecode:
-            lazyResults.removeAll(keepCapacity:true)
+            lazyResults.removeAll(keepingCapacity:true)
         case .directDecode,
              .structDecode:
             break

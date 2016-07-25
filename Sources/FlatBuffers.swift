@@ -45,7 +45,7 @@ public extension PoolableInstances {
     }
     
     // Optional preheat of instance pool
-    public static func fillInstancePool(initialPoolSize : UInt) -> Void {
+    public static func fillInstancePool(_ initialPoolSize : UInt) -> Void {
         pthread_mutex_lock(&instancePoolMutex)
         defer { pthread_mutex_unlock(&instancePoolMutex) }
 
@@ -74,7 +74,7 @@ public extension PoolableInstances {
     
     // reuseInstance can be called when we believe we are about to zero out
     // the final strong reference we hold ourselves to put the instance in for reuse
-    public static func reuseInstance(inout instance : Self) {
+    public static func reuseInstance( _ instance : inout Self) {
         guard maxInstanceCacheSize > 0 else // avoid taking the mutex if not using pool
         {
             return // don't pool
