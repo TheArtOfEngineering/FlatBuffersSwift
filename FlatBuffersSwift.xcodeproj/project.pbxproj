@@ -13,7 +13,7 @@
 		__src_cc_ref_Sources/FlatBufferReader.swift /* FlatBufferReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = __PBXFileRef_Sources/FlatBufferReader.swift /* FlatBufferReader.swift */; };
 		__src_cc_ref_Sources/FlatBuffers.swift /* FlatBuffers.swift in Sources */ = {isa = PBXBuildFile; fileRef = __PBXFileRef_Sources/FlatBuffers.swift /* FlatBuffers.swift */; };
 		__src_cc_ref_Sources/LazyVector.swift /* LazyVector.swift in Sources */ = {isa = PBXBuildFile; fileRef = __PBXFileRef_Sources/LazyVector.swift /* LazyVector.swift */; };
-		__src_cc_ref_Tests/FlatBuffersPerformanceTestDesktop/bench.swift /* bench.swift in Sources */ = {isa = PBXBuildFile; fileRef = __PBXFileRef_Tests/FlatBuffersPerformanceTestDesktop/bench.swift /* bench.swift */; };
+		__src_cc_ref_Tests/FlatBuffersPerformanceTestDesktop/bench.swift /* Bench.swift in Sources */ = {isa = PBXBuildFile; fileRef = __PBXFileRef_Tests/FlatBuffersPerformanceTestDesktop/bench.swift /* Bench.swift */; };
 		__src_cc_ref_Tests/FlatBuffersPerformanceTestDesktop/bench_direct_access.swift /* bench_direct_access.swift in Sources */ = {isa = PBXBuildFile; fileRef = __PBXFileRef_Tests/FlatBuffersPerformanceTestDesktop/bench_direct_access.swift /* bench_direct_access.swift */; };
 		__src_cc_ref_Tests/FlatBuffersPerformanceTestDesktop/flatbench.swift /* flatbench.swift in Sources */ = {isa = PBXBuildFile; fileRef = __PBXFileRef_Tests/FlatBuffersPerformanceTestDesktop/flatbench.swift /* flatbench.swift */; };
 		__src_cc_ref_Tests/FlatBuffersPerformanceTestDesktop/main.swift /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = __PBXFileRef_Tests/FlatBuffersPerformanceTestDesktop/main.swift /* main.swift */; };
@@ -43,7 +43,7 @@
 		__PBXFileRef_Sources/FlatBufferReader.swift /* FlatBufferReader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlatBufferReader.swift; sourceTree = "<group>"; };
 		__PBXFileRef_Sources/FlatBuffers.swift /* FlatBuffers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlatBuffers.swift; sourceTree = "<group>"; };
 		__PBXFileRef_Sources/LazyVector.swift /* LazyVector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LazyVector.swift; sourceTree = "<group>"; };
-		__PBXFileRef_Tests/FlatBuffersPerformanceTestDesktop/bench.swift /* bench.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = bench.swift; sourceTree = "<group>"; };
+		__PBXFileRef_Tests/FlatBuffersPerformanceTestDesktop/bench.swift /* Bench.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bench.swift; sourceTree = "<group>"; };
 		__PBXFileRef_Tests/FlatBuffersPerformanceTestDesktop/bench_direct_access.swift /* bench_direct_access.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = bench_direct_access.swift; sourceTree = "<group>"; };
 		__PBXFileRef_Tests/FlatBuffersPerformanceTestDesktop/flatbench.swift /* flatbench.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = flatbench.swift; sourceTree = "<group>"; };
 		__PBXFileRef_Tests/FlatBuffersPerformanceTestDesktop/main.swift /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
@@ -130,7 +130,7 @@
 		"_______Group_FlatBuffersPerformanceTestDesktopTestSuite" /* FlatBuffersPerformanceTestDesktopTestSuite */ = {
 			isa = PBXGroup;
 			children = (
-				__PBXFileRef_Tests/FlatBuffersPerformanceTestDesktop/bench.swift /* bench.swift */,
+				__PBXFileRef_Tests/FlatBuffersPerformanceTestDesktop/bench.swift /* Bench.swift */,
 				__PBXFileRef_Tests/FlatBuffersPerformanceTestDesktop/bench_direct_access.swift /* bench_direct_access.swift */,
 				__PBXFileRef_Tests/FlatBuffersPerformanceTestDesktop/flatbench.swift /* flatbench.swift */,
 				__PBXFileRef_Tests/FlatBuffersPerformanceTestDesktop/main.swift /* main.swift */,
@@ -270,7 +270,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 0;
 			files = (
-				__src_cc_ref_Tests/FlatBuffersPerformanceTestDesktop/bench.swift /* bench.swift in Sources */,
+				__src_cc_ref_Tests/FlatBuffersPerformanceTestDesktop/bench.swift /* Bench.swift in Sources */,
 				__src_cc_ref_Tests/FlatBuffersPerformanceTestDesktop/bench_direct_access.swift /* bench_direct_access.swift in Sources */,
 				__src_cc_ref_Tests/FlatBuffersPerformanceTestDesktop/flatbench.swift /* flatbench.swift in Sources */,
 				__src_cc_ref_Tests/FlatBuffersPerformanceTestDesktop/main.swift /* main.swift in Sources */,

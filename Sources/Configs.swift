@@ -8,7 +8,7 @@
 
 import Foundation
 
-public struct BinaryBuildConfig{
+public struct BinaryBuildConfig {
     public let initialCapacity : Int
     public let uniqueStrings : Bool
     public let uniqueTables : Bool
